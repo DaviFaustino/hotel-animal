@@ -1,0 +1,4 @@
+Canina supreme;4
+Super dog;3.5
+Felina supreme;5
+Super cat;4

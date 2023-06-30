@@ -1,0 +1,5 @@
+.vscode
+/target
+src/test
+*.json
+src/arquivos/ultimosIDs.txt
