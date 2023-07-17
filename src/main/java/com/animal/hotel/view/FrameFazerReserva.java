@@ -1,4 +1,10 @@
-package com.animal.hotel;
+package com.animal.hotel.view;
+
+import com.animal.hotel.model.Cachorro;
+import com.animal.hotel.model.Gato;
+import com.animal.hotel.model.Hospede;
+import com.animal.hotel.uteis.Arquivos;
+import com.animal.hotel.uteis.InputDados;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

@@ -1,5 +1,8 @@
 package com.animal.hotel.uteis;
 
+import com.animal.hotel.model.Cachorro;
+import com.animal.hotel.model.Cliente;
+import com.animal.hotel.model.Gato;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;

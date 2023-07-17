@@ -1,4 +1,4 @@
-package com.animal.hotel;
+package com.animal.hotel.view;
 
 import java.util.ArrayList;
 

@@ -1,4 +1,4 @@
-package com.animal.hotel;
+package com.animal.hotel.view;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;

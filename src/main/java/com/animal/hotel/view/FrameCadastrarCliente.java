@@ -1,4 +1,8 @@
-package com.animal.hotel;
+package com.animal.hotel.view;
+
+import com.animal.hotel.model.Cliente;
+import com.animal.hotel.uteis.Arquivos;
+import com.animal.hotel.uteis.InputDados;
 
 import java.io.IOException;
 import java.util.ArrayList;

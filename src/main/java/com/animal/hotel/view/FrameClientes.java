@@ -1,4 +1,7 @@
-package com.animal.hotel;
+package com.animal.hotel.view;
+
+import com.animal.hotel.model.Cliente;
+import com.animal.hotel.uteis.Arquivos;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;

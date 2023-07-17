@@ -1,4 +1,7 @@
-package com.animal.hotel;
+package com.animal.hotel.view;
+
+import com.animal.hotel.model.Cachorro;
+import com.animal.hotel.model.Gato;
 
 import java.util.Arrays;
 

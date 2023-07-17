@@ -1,4 +1,9 @@
-package com.animal.hotel;
+package com.animal.hotel.view;
+
+import com.animal.hotel.model.Cachorro;
+import com.animal.hotel.model.Gato;
+import com.animal.hotel.model.Hospede;
+import com.animal.hotel.uteis.Arquivos;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
