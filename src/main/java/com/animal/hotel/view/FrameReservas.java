@@ -70,14 +70,14 @@ public class FrameReservas extends JFrame {
             setTitle("Gato");
         }
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(Sistema.telaWidth, Sistema.telaHeight);
-        setLocation(Sistema.posicaoTela);
+        setSize(Home.telaWidth, Home.telaHeight);
+        setLocation(Home.posicaoTela);
         setLayout(new BorderLayout(0, 20));
         setVisible(true);
-        if (Sistema.alterar) {
-            Sistema.telaEditarCliente.setVisible(false);
+        if (Home.alterar) {
+            Home.telaEditarCliente.setVisible(false);
         } else {
-            Sistema.telaPrincipal.setVisible(false);
+            Home.telaPrincipal.setVisible(false);
         }
         
         paineisHospedes = new ArrayList<>();
@@ -102,7 +102,7 @@ public class FrameReservas extends JFrame {
 
             @Override
             public void componentMoved(ComponentEvent arg0) {
-                Sistema.posicaoTela = getLocation();
+                Home.posicaoTela = getLocation();
             }
 
             @Override
@@ -110,8 +110,8 @@ public class FrameReservas extends JFrame {
                 tamanhoLaterais = (getWidth() - larguraPainelHospedes) / 2;
                 paineisHospedes.get(1).setPreferredSize(new Dimension(tamanhoLaterais, tamanhoLaterais));
                 paineisHospedes.get(2).setPreferredSize(new Dimension(tamanhoLaterais, tamanhoLaterais));
-                Sistema.telaWidth = getWidth();
-                Sistema.telaHeight = getHeight();
+                Home.telaWidth = getWidth();
+                Home.telaHeight = getHeight();
             }
 
             @Override
@@ -124,7 +124,7 @@ public class FrameReservas extends JFrame {
         int contButHospe = -1;
 
         for (int i = 0; i < hospedes.size(); i++) {
-            if ((Sistema.alterar && hospedes.get(i).getNumeroIdentificacaoResponsavel().equals(idResponsavel)) || !Sistema.alterar) {
+            if ((Home.alterar && hospedes.get(i).getNumeroIdentificacaoResponsavel().equals(idResponsavel)) || !Home.alterar) {
                 contButHospe++;
                 opcoesHospedes.add(new JButtonHospede());
                 opcoesHospedes.get(contButHospe).addActionListener(eventoHospede);
@@ -149,7 +149,7 @@ public class FrameReservas extends JFrame {
         voltar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent arg0) {
-                if (Sistema.alterar) {
+                if (Home.alterar) {
                     try {
                         float somaCustos = 0f;
                         for (int i = 0; i < hospedes.size(); i++) {
@@ -170,14 +170,14 @@ public class FrameReservas extends JFrame {
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
-                    Sistema.telaEditarCliente.setLocation(Sistema.posicaoTela);
-                    Sistema.telaEditarCliente.setSize(Sistema.telaWidth, Sistema.telaHeight);
-                    Sistema.telaEditarCliente.setVisible(true);
+                    Home.telaEditarCliente.setLocation(Home.posicaoTela);
+                    Home.telaEditarCliente.setSize(Home.telaWidth, Home.telaHeight);
+                    Home.telaEditarCliente.setVisible(true);
                     dispose();
                 } else {
-                    Sistema.telaPrincipal.setLocation(Sistema.posicaoTela);
-                    Sistema.telaPrincipal.setSize(Sistema.telaWidth, Sistema.telaHeight);
-                    Sistema.telaPrincipal.setVisible(true);
+                    Home.telaPrincipal.setLocation(Home.posicaoTela);
+                    Home.telaPrincipal.setSize(Home.telaWidth, Home.telaHeight);
+                    Home.telaPrincipal.setVisible(true);
                     dispose();
                 }
             }
@@ -201,8 +201,8 @@ public class FrameReservas extends JFrame {
         public void actionPerformed(ActionEvent arg0) {
             indiceHospede = ((JButtonHospede) arg0.getSource()).getIndiceHospede();
 
-            if (Sistema.alterar) {
-                Sistema.telaEditarReserva = new FrameEditarReserva(((JButtonHospede) arg0.getSource()).getIndiceButton());
+            if (Home.alterar) {
+                Home.telaEditarReserva = new FrameEditarReserva(((JButtonHospede) arg0.getSource()).getIndiceButton());
             } else {
                 new DialogVerReserva();
             }

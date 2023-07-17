@@ -28,9 +28,9 @@ public class FrameCadastrarCliente extends JFrame {
     public static Point posicaoTela;
 
     FrameCadastrarCliente() {
-        posicaoTela = Sistema.posicaoTela;
-        telaWidth = Sistema.telaWidth;
-        telaHeight = Sistema.telaHeight;
+        posicaoTela = Home.posicaoTela;
+        telaWidth = Home.telaWidth;
+        telaHeight = Home.telaHeight;
 
         setTitle("Cadastro de Cliente");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -73,9 +73,9 @@ public class FrameCadastrarCliente extends JFrame {
         labelsCadCliente.add(new JLabel("Nome do cliente"));
         labelsCadCliente.add(new JLabel("Número de telefone"));
         labelsCadCliente.add(new JLabel("E-mail do cliente"));
-        labelsCadCliente.get(0).setFont(Sistema.fontePadrao);
-        labelsCadCliente.get(1).setFont(Sistema.fontePadrao);
-        labelsCadCliente.get(2).setFont(Sistema.fontePadrao);
+        labelsCadCliente.get(0).setFont(Home.fontePadrao);
+        labelsCadCliente.get(1).setFont(Home.fontePadrao);
+        labelsCadCliente.get(2).setFont(Home.fontePadrao);
 
         
         entradasTextoCadCliente = new ArrayList<>();
@@ -88,9 +88,9 @@ public class FrameCadastrarCliente extends JFrame {
         voltarCadCliente.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent arg0) {
-                Sistema.telaPrincipal.setLocation(posicaoTela);
-                Sistema.telaPrincipal.setSize(telaWidth, telaHeight);
-                Sistema.telaPrincipal.setVisible(true);
+                Home.telaPrincipal.setLocation(posicaoTela);
+                Home.telaPrincipal.setSize(telaWidth, telaHeight);
+                Home.telaPrincipal.setVisible(true);
                 dispose();
             }
         });
@@ -137,6 +137,6 @@ public class FrameCadastrarCliente extends JFrame {
 
 
         setVisible(true);
-        Sistema.telaPrincipal.setVisible(false);
+        Home.telaPrincipal.setVisible(false);
     }
 }

@@ -41,9 +41,9 @@ public class FrameClientes extends JFrame {
     public static int indiceCliente;
 
     FrameClientes() {
-        posicaoTela = Sistema.posicaoTela;
-        telaWidth = Sistema.telaWidth;
-        telaHeight = Sistema.telaHeight;
+        posicaoTela = Home.posicaoTela;
+        telaWidth = Home.telaWidth;
+        telaHeight = Home.telaHeight;
 
         String jsonString = "";
 
@@ -67,7 +67,7 @@ public class FrameClientes extends JFrame {
         setLocation(posicaoTela);
         setLayout(new BorderLayout(0, 20));
         setVisible(true);
-        Sistema.telaPrincipal.setVisible(false);
+        Home.telaPrincipal.setVisible(false);
         
         paineisClientes = new ArrayList<>();
         paineisClientes.add(new JPanel());
@@ -133,9 +133,9 @@ public class FrameClientes extends JFrame {
                     e.printStackTrace();
                 }
 
-                Sistema.telaPrincipal.setLocation(posicaoTela);
-                Sistema.telaPrincipal.setSize(telaWidth, telaHeight);
-                Sistema.telaPrincipal.setVisible(true);
+                Home.telaPrincipal.setLocation(posicaoTela);
+                Home.telaPrincipal.setSize(telaWidth, telaHeight);
+                Home.telaPrincipal.setVisible(true);
                 dispose();
             }
         });
@@ -157,7 +157,7 @@ public class FrameClientes extends JFrame {
         @Override
         public void actionPerformed(ActionEvent arg0) {
             indiceCliente = opcoesClientes.indexOf(arg0.getSource());
-            Sistema.telaEditarCliente = new FrameEditarCliente();
+            Home.telaEditarCliente = new FrameEditarCliente();
         }
     }
 }

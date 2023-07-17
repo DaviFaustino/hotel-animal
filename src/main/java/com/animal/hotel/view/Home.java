@@ -31,7 +31,7 @@ import java.awt.Point;
 * dos animais/reservas podem ser editados caso haja solicitação do cliente e removidos depois do serviço
 * prestado for finalizado.
 * */
-public class Sistema {
+public class Home {
     static int larguraPainelPrincipal = 170;
     static int alturaPainelPrincipal = 148;
     static int tamanhoLaterais;

@@ -42,8 +42,8 @@ public class FrameFazerReserva extends JFrame {
 
         setTitle("Fazer reserva de hospede");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(Sistema.telaWidth, Sistema.telaHeight);
-        setLocation(Sistema.posicaoTela);
+        setSize(Home.telaWidth, Home.telaHeight);
+        setLocation(Home.posicaoTela);
         setLayout(null);
 
         addComponentListener(new ComponentListener() {
@@ -55,7 +55,7 @@ public class FrameFazerReserva extends JFrame {
 
             @Override
             public void componentMoved(ComponentEvent arg0) {
-                Sistema.posicaoTela = getLocation();
+                Home.posicaoTela = getLocation();
             }
 
             @Override
@@ -176,9 +176,9 @@ public class FrameFazerReserva extends JFrame {
         voltarReservaHospede.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent arg0) {
-                Sistema.telaEditarCliente.setLocation(Sistema.posicaoTela);
-                Sistema.telaEditarCliente.setSize(Sistema.telaWidth, Sistema.telaHeight);
-                Sistema.telaEditarCliente.setVisible(true);
+                Home.telaEditarCliente.setLocation(Home.posicaoTela);
+                Home.telaEditarCliente.setSize(Home.telaWidth, Home.telaHeight);
+                Home.telaEditarCliente.setVisible(true);
                 dispose();
             }
         });
@@ -289,6 +289,6 @@ public class FrameFazerReserva extends JFrame {
         add(salvarReservaHospede);
         
         setVisible(true);
-        Sistema.telaEditarCliente.setVisible(false);
+        Home.telaEditarCliente.setVisible(false);
     }
 }

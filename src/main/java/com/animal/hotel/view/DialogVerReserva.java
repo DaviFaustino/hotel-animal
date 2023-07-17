@@ -16,7 +16,7 @@ public class DialogVerReserva extends JDialog {
     DialogVerReserva() {
         setTitle("Dados da reserva");
         setSize(380, 300);
-        setLocation(((int) Sistema.posicaoTela.getX() + Sistema.telaWidth / 2 - 200), ((int) Sistema.posicaoTela.getY() + Sistema.telaHeight / 2 - 150));
+        setLocation(((int) Home.posicaoTela.getX() + Home.telaWidth / 2 - 200), ((int) Home.posicaoTela.getY() + Home.telaHeight / 2 - 150));
         
         JPanel painelVerReserva = new JPanel();
 
@@ -42,7 +42,7 @@ public class DialogVerReserva extends JDialog {
         painelVerReserva.add(new JSeparator());
 
         for (int i = 0; i < painelVerReserva.getComponentCount() - 1; i++) {
-            painelVerReserva.getComponent(i + 1).setFont(Sistema.fontePadrao);
+            painelVerReserva.getComponent(i + 1).setFont(Home.fontePadrao);
         }
 
         add(painelVerReserva);

@@ -57,11 +57,11 @@ public class FrameEditarReserva extends JFrame {
             setTitle("Detalhes Gato");
         }
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(Sistema.telaWidth, Sistema.telaHeight);
-        setLocation(Sistema.posicaoTela);
+        setSize(Home.telaWidth, Home.telaHeight);
+        setLocation(Home.posicaoTela);
         setLayout(new BorderLayout());
         setVisible(true);
-        Sistema.telaReservas.setVisible(false);
+        Home.telaReservas.setVisible(false);
         
         paineisEditarReserva = new ArrayList<>();
         paineisEditarReserva.add(new JPanel());
@@ -85,7 +85,7 @@ public class FrameEditarReserva extends JFrame {
 
             @Override
             public void componentMoved(ComponentEvent arg0) {
-                Sistema.posicaoTela = getLocation();
+                Home.posicaoTela = getLocation();
             }
 
             @Override
@@ -96,8 +96,8 @@ public class FrameEditarReserva extends JFrame {
                 paineisEditarReserva.get(2).setPreferredSize(new Dimension(tamanhoLaterais, tamanhoLaterais));
                 paineisEditarReserva.get(3).setPreferredSize(new Dimension(tamanhoCimaBaixo, tamanhoCimaBaixo));
                 paineisEditarReserva.get(4).setPreferredSize(new Dimension(tamanhoCimaBaixo, tamanhoCimaBaixo));
-                Sistema.telaWidth = getWidth();
-                Sistema.telaHeight = getHeight();
+                Home.telaWidth = getWidth();
+                Home.telaHeight = getHeight();
             }
 
             @Override
@@ -128,11 +128,11 @@ public class FrameEditarReserva extends JFrame {
         }
         paineisEditarReserva.get(0).add(new JSeparator(JSeparator.HORIZONTAL));
         paineisEditarReserva.get(0).add(LabelCustoHospede = new JLabel("Custo do hospede:" + FrameReservas.hospedes.get(FrameReservas.indiceHospede).getCustoHospede()));
-        paineisEditarReserva.get(0).getComponent(0).setFont(Sistema.fontePadrao);
-        paineisEditarReserva.get(0).getComponent(2).setFont(Sistema.fontePadrao);
-        paineisEditarReserva.get(0).getComponent(3).setFont(Sistema.fontePadrao);
-        paineisEditarReserva.get(0).getComponent(8).setFont(Sistema.fontePadrao);
-        paineisEditarReserva.get(0).getComponent(14).setFont(Sistema.fontePadrao);
+        paineisEditarReserva.get(0).getComponent(0).setFont(Home.fontePadrao);
+        paineisEditarReserva.get(0).getComponent(2).setFont(Home.fontePadrao);
+        paineisEditarReserva.get(0).getComponent(3).setFont(Home.fontePadrao);
+        paineisEditarReserva.get(0).getComponent(8).setFont(Home.fontePadrao);
+        paineisEditarReserva.get(0).getComponent(14).setFont(Home.fontePadrao);
 
         BotaoEventosEditarHospede eventoEditarHospede = new BotaoEventosEditarHospede();
         editNomeHospede.addActionListener(eventoEditarHospede);
@@ -153,9 +153,9 @@ public class FrameEditarReserva extends JFrame {
         voltar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent arg0) {
-                Sistema.telaReservas.setLocation(Sistema.posicaoTela);
-                Sistema.telaReservas.setSize(Sistema.telaWidth, Sistema.telaHeight);
-                Sistema.telaReservas.setVisible(true);
+                Home.telaReservas.setLocation(Home.posicaoTela);
+                Home.telaReservas.setSize(Home.telaWidth, Home.telaHeight);
+                Home.telaReservas.setVisible(true);
 
                 if (FrameReservas.hospedeIsCachorro) {
                     FrameReservas.opcoesHospedes.get(FrameEditarReserva.indiceButton).getLabelNome().setText("Nome do cachorro: " + FrameReservas.hospedes.get(FrameReservas.indiceHospede).getNome());
@@ -218,9 +218,9 @@ public class FrameEditarReserva extends JFrame {
                     atualizaCusto();
                 } else {
                     if (source == editNomeRacao) {
-                        dialogEscolhaNomeRacao = new JDialog(Sistema.telaEditarReserva);
+                        dialogEscolhaNomeRacao = new JDialog(Home.telaEditarReserva);
                         dialogEscolhaNomeRacao.setSize(300, 100);
-                        dialogEscolhaNomeRacao.setLocation((int) (Sistema.posicaoTela.getX() + Sistema.telaWidth / 2 - 150), (int) (Sistema.posicaoTela.getY() + Sistema.telaHeight / 2 - 50));
+                        dialogEscolhaNomeRacao.setLocation((int) (Home.posicaoTela.getX() + Home.telaWidth / 2 - 150), (int) (Home.posicaoTela.getY() + Home.telaHeight / 2 - 50));
 
                         opcoesRacoes = new HashMap<String, Float>();
                         try {
@@ -287,9 +287,9 @@ public class FrameEditarReserva extends JFrame {
                             }
                         } else {
                             if (source == editPodeSocializarComOutros) {
-                                dialogPodeSocializar = new JDialog(Sistema.telaEditarReserva);
+                                dialogPodeSocializar = new JDialog(Home.telaEditarReserva);
                                 dialogPodeSocializar.setSize(250, 100);
-                                dialogPodeSocializar.setLocation((int) Sistema.posicaoTela.getX() + Sistema.telaWidth / 2 - 125, (int) Sistema.posicaoTela.getY() + Sistema.telaHeight / 2 - 50);
+                                dialogPodeSocializar.setLocation((int) Home.posicaoTela.getX() + Home.telaWidth / 2 - 125, (int) Home.posicaoTela.getY() + Home.telaHeight / 2 - 50);
 
                                 simSocia = new JRadioButton("Sim");
                                 naoSocia = new JRadioButton("Não");
@@ -325,9 +325,9 @@ public class FrameEditarReserva extends JFrame {
                                 dialogPodeSocializar.setVisible(true);
                             } else {
                                 if (source == edDataCheckIn) {
-                                    dialogDataCheckIn = new JDialog(Sistema.telaEditarReserva);
+                                    dialogDataCheckIn = new JDialog(Home.telaEditarReserva);
                                     dialogDataCheckIn.setSize(250, 100);
-                                    dialogDataCheckIn.setLocation(((int) Sistema.posicaoTela.getX() + Sistema.telaWidth / 2 - 150), ((int) Sistema.posicaoTela.getY() + Sistema.telaHeight / 2 - 50));
+                                    dialogDataCheckIn.setLocation(((int) Home.posicaoTela.getX() + Home.telaWidth / 2 - 150), ((int) Home.posicaoTela.getY() + Home.telaHeight / 2 - 50));
 
                                     entradasEditDataCheckIn = new ArrayList<JTextField>();
                                     for (int i = 0; i < 3; i++) {
@@ -362,9 +362,9 @@ public class FrameEditarReserva extends JFrame {
                                     dialogDataCheckIn.setVisible(true);
                                 } else {
                                     if (source == edDataCheckOut) {
-                                        dialogDataCheckOut = new JDialog(Sistema.telaEditarReserva);
+                                        dialogDataCheckOut = new JDialog(Home.telaEditarReserva);
                                         dialogDataCheckOut.setSize(250, 100);
-                                        dialogDataCheckOut.setLocation(((int) Sistema.posicaoTela.getX() + Sistema.telaWidth / 2 - 150), ((int) Sistema.posicaoTela.getY() + Sistema.telaHeight / 2 - 50));
+                                        dialogDataCheckOut.setLocation(((int) Home.posicaoTela.getX() + Home.telaWidth / 2 - 150), ((int) Home.posicaoTela.getY() + Home.telaHeight / 2 - 50));
     
                                         entradasEditDataCheckOut = new ArrayList<JTextField>();
                                         for (int i = 0; i < 3; i++) {
@@ -399,9 +399,9 @@ public class FrameEditarReserva extends JFrame {
                                         dialogDataCheckOut.setVisible(true);
                                     } else {
                                         if (FrameReservas.hospedes.get(0).getClass() == Cachorro.class) {
-                                            dialogPodePassear = new JDialog(Sistema.telaEditarReserva);
+                                            dialogPodePassear = new JDialog(Home.telaEditarReserva);
                                             dialogPodePassear.setSize(250, 100);
-                                            dialogPodePassear.setLocation((int) Sistema.posicaoTela.getX() + Sistema.telaWidth / 2 - 125, (int) Sistema.posicaoTela.getY() + Sistema.telaHeight / 2 - 50);
+                                            dialogPodePassear.setLocation((int) Home.posicaoTela.getX() + Home.telaWidth / 2 - 125, (int) Home.posicaoTela.getY() + Home.telaHeight / 2 - 50);
 
                                             simPassear = new JRadioButton("Sim");
                                             naoPassear = new JRadioButton("Não");

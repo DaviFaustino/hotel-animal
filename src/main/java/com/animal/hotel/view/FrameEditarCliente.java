@@ -39,7 +39,7 @@ public class FrameEditarCliente extends JFrame {
         setLocation(posicaoTela);
         setLayout(new BorderLayout());
         setVisible(true);
-        Sistema.telaClientes.setVisible(false);
+        Home.telaClientes.setVisible(false);
         
         paineisEditarCliente = new ArrayList<>();
         paineisEditarCliente.add(new JPanel());
@@ -86,14 +86,14 @@ public class FrameEditarCliente extends JFrame {
         paineisEditarCliente.get(0).add(new JLabel("Escolha um dado para editar"));
         paineisEditarCliente.get(0).add(new JSeparator(JSeparator.HORIZONTAL));
         paineisEditarCliente.get(0).add(new JLabel("Número de identificação: " + FrameClientes.clientes.get(FrameClientes.indiceCliente).getNumeroIdentificacao()));
-        paineisEditarCliente.get(0).getComponent(2).setFont(Sistema.fontePadrao);
+        paineisEditarCliente.get(0).getComponent(2).setFont(Home.fontePadrao);
         paineisEditarCliente.get(0).add(new JSeparator(JSeparator.HORIZONTAL));
         paineisEditarCliente.get(0).add(editNomeCliente = new JButton("Nome do cliente: " + FrameClientes.clientes.get(FrameClientes.indiceCliente).getNome()));
         paineisEditarCliente.get(0).add(editTelefoneCliente = new JButton("Número de telefone: " + FrameClientes.clientes.get(FrameClientes.indiceCliente).getNumeroTelefone()));
         paineisEditarCliente.get(0).add(editEmailCliente = new JButton("E-mail: " + FrameClientes.clientes.get(FrameClientes.indiceCliente).getEmail()));
         paineisEditarCliente.get(0).add(new JSeparator(JSeparator.HORIZONTAL));
         paineisEditarCliente.get(0).add(new JLabel("Débito: " + (FrameClientes.clientes.get(FrameClientes.indiceCliente).getCustoCachorrosGatos()[0] + FrameClientes.clientes.get(FrameClientes.indiceCliente).getCustoCachorrosGatos()[1])));
-        paineisEditarCliente.get(0).getComponent(8).setFont(Sistema.fontePadrao);
+        paineisEditarCliente.get(0).getComponent(8).setFont(Home.fontePadrao);
         paineisEditarCliente.get(0).add(new JSeparator(JSeparator.HORIZONTAL));
         paineisEditarCliente.get(0).add(fazerReserva = new JButton("Fazer reservas de hospedes"));
         paineisEditarCliente.get(0).add(verReservas = new JButton("Ver reservas do cliente"));
@@ -109,8 +109,8 @@ public class FrameEditarCliente extends JFrame {
         voltar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent arg0) {
-                Sistema.telaClientes.setLocation(posicaoTela);
-                Sistema.telaClientes.setSize(telaWidth, telaHeight);
+                Home.telaClientes.setLocation(posicaoTela);
+                Home.telaClientes.setSize(telaWidth, telaHeight);
 
                 JPanel dados = new JPanel();
                 dados.setLayout(new BoxLayout(dados, BoxLayout.Y_AXIS));
@@ -121,7 +121,7 @@ public class FrameEditarCliente extends JFrame {
                 FrameClientes.opcoesClientes.get(FrameClientes.indiceCliente).remove(0);
                 FrameClientes.opcoesClientes.get(FrameClientes.indiceCliente).add(dados);
 
-                Sistema.telaClientes.setVisible(true);
+                Home.telaClientes.setVisible(true);
                 dispose();
             }
         });
@@ -184,7 +184,7 @@ public class FrameEditarCliente extends JFrame {
                             }
 
                             if (escolha != 2) {
-                                Sistema.telaFazerReserva = new FrameFazerReserva(hospedeIsCachorro);
+                                Home.telaFazerReserva = new FrameFazerReserva(hospedeIsCachorro);
                             }
 
                         } else {
@@ -202,7 +202,7 @@ public class FrameEditarCliente extends JFrame {
 
                             if (escolha != 2) {
                                 FrameReservas.hospedeIsCachorro = hospedeIsCachorro;
-                                Sistema.telaReservas = new FrameReservas(FrameClientes.clientes.get(FrameClientes.indiceCliente).getNumeroIdentificacao(), FrameClientes.clientes.get(FrameClientes.indiceCliente).getCustoCachorrosGatos());
+                                Home.telaReservas = new FrameReservas(FrameClientes.clientes.get(FrameClientes.indiceCliente).getNumeroIdentificacao(), FrameClientes.clientes.get(FrameClientes.indiceCliente).getCustoCachorrosGatos());
                             }
                         }
                     }
