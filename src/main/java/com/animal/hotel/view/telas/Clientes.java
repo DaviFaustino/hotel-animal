@@ -30,7 +30,7 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Point;
 
-public class FrameClientes extends JFrame {
+public class Clientes extends JFrame {
     public int larguraPainelCliente = 400;
     public static List<Cliente> clientes;
     public static ArrayList<JButtonCliente> opcoesClientes;
@@ -42,7 +42,7 @@ public class FrameClientes extends JFrame {
     public int tamanhoCimaBaixo;
     public static int indiceCliente;
 
-    public FrameClientes() {
+    public Clientes() {
         posicaoTela = Home.posicaoTela;
         telaWidth = Home.telaWidth;
         telaHeight = Home.telaHeight;

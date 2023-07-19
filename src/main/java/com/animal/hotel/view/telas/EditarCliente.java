@@ -18,7 +18,7 @@ import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
 import java.util.ArrayList;
 
-public class FrameEditarCliente extends JFrame {
+public class EditarCliente extends JFrame {
     public static ArrayList<JPanel> paineisEditarCliente;
     static int larguraPainelEditCliente = 400;
     static int alturaPainelEditCliente = 300;
@@ -29,10 +29,10 @@ public class FrameEditarCliente extends JFrame {
     public int tamanhoCimaBaixo;
     public static JButton editNomeCliente, editTelefoneCliente, editEmailCliente, fazerReserva, verReservas;
 
-    public FrameEditarCliente() {
-        posicaoTela = FrameClientes.posicaoTela;
-        telaWidth = FrameClientes.telaWidth;
-        telaHeight = FrameClientes.telaHeight;
+    public EditarCliente() {
+        posicaoTela = Clientes.posicaoTela;
+        telaWidth = Clientes.telaWidth;
+        telaHeight = Clientes.telaHeight;
 
         setTitle("Detalhes Clientes");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -86,14 +86,14 @@ public class FrameEditarCliente extends JFrame {
 
         paineisEditarCliente.get(0).add(new JLabel("Escolha um dado para editar"));
         paineisEditarCliente.get(0).add(new JSeparator(JSeparator.HORIZONTAL));
-        paineisEditarCliente.get(0).add(new JLabel("Número de identificação: " + FrameClientes.clientes.get(FrameClientes.indiceCliente).getNumeroIdentificacao()));
+        paineisEditarCliente.get(0).add(new JLabel("Número de identificação: " + Clientes.clientes.get(Clientes.indiceCliente).getNumeroIdentificacao()));
         paineisEditarCliente.get(0).getComponent(2).setFont(Home.fontePadrao);
         paineisEditarCliente.get(0).add(new JSeparator(JSeparator.HORIZONTAL));
-        paineisEditarCliente.get(0).add(editNomeCliente = new JButton("Nome do cliente: " + FrameClientes.clientes.get(FrameClientes.indiceCliente).getNome()));
-        paineisEditarCliente.get(0).add(editTelefoneCliente = new JButton("Número de telefone: " + FrameClientes.clientes.get(FrameClientes.indiceCliente).getNumeroTelefone()));
-        paineisEditarCliente.get(0).add(editEmailCliente = new JButton("E-mail: " + FrameClientes.clientes.get(FrameClientes.indiceCliente).getEmail()));
+        paineisEditarCliente.get(0).add(editNomeCliente = new JButton("Nome do cliente: " + Clientes.clientes.get(Clientes.indiceCliente).getNome()));
+        paineisEditarCliente.get(0).add(editTelefoneCliente = new JButton("Número de telefone: " + Clientes.clientes.get(Clientes.indiceCliente).getNumeroTelefone()));
+        paineisEditarCliente.get(0).add(editEmailCliente = new JButton("E-mail: " + Clientes.clientes.get(Clientes.indiceCliente).getEmail()));
         paineisEditarCliente.get(0).add(new JSeparator(JSeparator.HORIZONTAL));
-        paineisEditarCliente.get(0).add(new JLabel("Débito: " + (FrameClientes.clientes.get(FrameClientes.indiceCliente).getCustoCachorrosGatos()[0] + FrameClientes.clientes.get(FrameClientes.indiceCliente).getCustoCachorrosGatos()[1])));
+        paineisEditarCliente.get(0).add(new JLabel("Débito: " + (Clientes.clientes.get(Clientes.indiceCliente).getCustoCachorrosGatos()[0] + Clientes.clientes.get(Clientes.indiceCliente).getCustoCachorrosGatos()[1])));
         paineisEditarCliente.get(0).getComponent(8).setFont(Home.fontePadrao);
         paineisEditarCliente.get(0).add(new JSeparator(JSeparator.HORIZONTAL));
         paineisEditarCliente.get(0).add(fazerReserva = new JButton("Fazer reservas de hospedes"));
@@ -114,12 +114,12 @@ public class FrameEditarCliente extends JFrame {
 
                 JPanel dados = new JPanel();
                 dados.setLayout(new BoxLayout(dados, BoxLayout.Y_AXIS));
-                dados.add(new JLabel("Id do cliente: " + FrameClientes.clientes.get(FrameClientes.indiceCliente).getNumeroIdentificacao()));
-                dados.add(new JLabel("Nome do cliente: " + FrameClientes.clientes.get(FrameClientes.indiceCliente).getNome()));
-                dados.add(new JLabel("Debito do cliente: " + String.valueOf(FrameClientes.clientes.get(FrameClientes.indiceCliente).getCustoCachorrosGatos()[0] + FrameClientes.clientes.get(FrameClientes.indiceCliente).getCustoCachorrosGatos()[1])));
+                dados.add(new JLabel("Id do cliente: " + Clientes.clientes.get(Clientes.indiceCliente).getNumeroIdentificacao()));
+                dados.add(new JLabel("Nome do cliente: " + Clientes.clientes.get(Clientes.indiceCliente).getNome()));
+                dados.add(new JLabel("Debito do cliente: " + String.valueOf(Clientes.clientes.get(Clientes.indiceCliente).getCustoCachorrosGatos()[0] + Clientes.clientes.get(Clientes.indiceCliente).getCustoCachorrosGatos()[1])));
                 
-                FrameClientes.opcoesClientes.get(FrameClientes.indiceCliente).remove(0);
-                FrameClientes.opcoesClientes.get(FrameClientes.indiceCliente).add(dados);
+                Clientes.opcoesClientes.get(Clientes.indiceCliente).remove(0);
+                Clientes.opcoesClientes.get(Clientes.indiceCliente).add(dados);
 
                 Home.telaClientes.setVisible(true);
                 dispose();

@@ -25,7 +25,7 @@ import javax.swing.JRadioButton;
 import javax.swing.JSeparator;
 import javax.swing.JTextField;
 
-public class FrameEditarReserva extends JFrame {
+public class EditarReserva extends JFrame {
     static ArrayList<JPanel> paineisEditarReserva;
     static int larguraPainelEditHospede = 400;
     static int alturaPainelEditHospede = 370;
@@ -41,11 +41,11 @@ public class FrameEditarReserva extends JFrame {
     public static JRadioButton simPassear, naoPassear, simSocia, naoSocia;
     static int indiceButton;
 
-    public FrameEditarReserva(int indiceButton) {
+    public EditarReserva(int indiceButton) {
         super();
-        FrameEditarReserva.indiceButton = indiceButton;
+        EditarReserva.indiceButton = indiceButton;
 
-        if (FrameReservas.hospedeIsCachorro) {
+        if (Reservas.hospedeIsCachorro) {
             setTitle("Detalhes Cachorro");
         } else {
             setTitle("Detalhes Gato");
@@ -101,27 +101,27 @@ public class FrameEditarReserva extends JFrame {
 
         paineisEditarReserva.get(0).add(new JLabel("Escolha um dado para editar"));
         paineisEditarReserva.get(0).add(new JSeparator(JSeparator.HORIZONTAL));
-        paineisEditarReserva.get(0).add(new JLabel("Número de ID responsável: " + FrameReservas.hospedes.get(FrameReservas.indiceHospede).getNumeroIdentificacaoResponsavel()));
-        paineisEditarReserva.get(0).add(new JLabel("Número de identificação: " + FrameReservas.hospedes.get(FrameReservas.indiceHospede).getNumeroIdentificacao()));
-        paineisEditarReserva.get(0).add(editNomeHospede = new JButton("Nome do hospede: " + FrameReservas.hospedes.get(FrameReservas.indiceHospede).getNome()));
-        paineisEditarReserva.get(0).add(editFaseDaVida = new JButton("Fase da vida: " + FrameReservas.hospedes.get(FrameReservas.indiceHospede).getFaseDaVida()));
-        paineisEditarReserva.get(0).add(editNomeRacao = new JButton("Ração do hospede: " + FrameReservas.hospedes.get(FrameReservas.indiceHospede).getNomeRacao()));
-        paineisEditarReserva.get(0).add(editQuantRacaoGramas = new JButton("Quantidade de ração (g): " + FrameReservas.hospedes.get(FrameReservas.indiceHospede).getQuantRacaoGramas()));
-        paineisEditarReserva.get(0).add(LabelGastoRacao = new JLabel("Gasto com ração: " + FrameReservas.hospedes.get(FrameReservas.indiceHospede).getGastoComRacao()));
-        paineisEditarReserva.get(0).add(editPodeSocializarComOutros = new JButton("Pode socializar com outros animais: " + FrameReservas.hospedes.get(FrameReservas.indiceHospede).isPodeSocializarComOutros()));
-        paineisEditarReserva.get(0).add(edDataCheckIn = new JButton("Data de check-in: " + Arrays.toString(FrameReservas.hospedes.get(FrameReservas.indiceHospede).getDataCheckIn())));
-        paineisEditarReserva.get(0).add(edDataCheckOut = new JButton("Data de check-out: " + Arrays.toString(FrameReservas.hospedes.get(FrameReservas.indiceHospede).getDataCheckOut())));  
-        if (FrameReservas.hospedes.get(0).getClass() == Cachorro.class) {
-            Cachorro cachorro = (Cachorro) FrameReservas.hospedes.get(FrameReservas.indiceHospede);
+        paineisEditarReserva.get(0).add(new JLabel("Número de ID responsável: " + Reservas.hospedes.get(Reservas.indiceHospede).getNumeroIdentificacaoResponsavel()));
+        paineisEditarReserva.get(0).add(new JLabel("Número de identificação: " + Reservas.hospedes.get(Reservas.indiceHospede).getNumeroIdentificacao()));
+        paineisEditarReserva.get(0).add(editNomeHospede = new JButton("Nome do hospede: " + Reservas.hospedes.get(Reservas.indiceHospede).getNome()));
+        paineisEditarReserva.get(0).add(editFaseDaVida = new JButton("Fase da vida: " + Reservas.hospedes.get(Reservas.indiceHospede).getFaseDaVida()));
+        paineisEditarReserva.get(0).add(editNomeRacao = new JButton("Ração do hospede: " + Reservas.hospedes.get(Reservas.indiceHospede).getNomeRacao()));
+        paineisEditarReserva.get(0).add(editQuantRacaoGramas = new JButton("Quantidade de ração (g): " + Reservas.hospedes.get(Reservas.indiceHospede).getQuantRacaoGramas()));
+        paineisEditarReserva.get(0).add(LabelGastoRacao = new JLabel("Gasto com ração: " + Reservas.hospedes.get(Reservas.indiceHospede).getGastoComRacao()));
+        paineisEditarReserva.get(0).add(editPodeSocializarComOutros = new JButton("Pode socializar com outros animais: " + Reservas.hospedes.get(Reservas.indiceHospede).isPodeSocializarComOutros()));
+        paineisEditarReserva.get(0).add(edDataCheckIn = new JButton("Data de check-in: " + Arrays.toString(Reservas.hospedes.get(Reservas.indiceHospede).getDataCheckIn())));
+        paineisEditarReserva.get(0).add(edDataCheckOut = new JButton("Data de check-out: " + Arrays.toString(Reservas.hospedes.get(Reservas.indiceHospede).getDataCheckOut())));  
+        if (Reservas.hospedes.get(0).getClass() == Cachorro.class) {
+            Cachorro cachorro = (Cachorro) Reservas.hospedes.get(Reservas.indiceHospede);
 
             paineisEditarReserva.get(0).add(editPodePassear = new JButton("Pode passear: " + cachorro.getPodePassear()));
         } else {
-            Gato gato = (Gato) FrameReservas.hospedes.get(FrameReservas.indiceHospede);
+            Gato gato = (Gato) Reservas.hospedes.get(Reservas.indiceHospede);
 
             paineisEditarReserva.get(0).add(editQuantCompanheirosGa = new JButton("Quantidade de companheiros: " + gato.getQuantCompanheirosGatil()));
         }
         paineisEditarReserva.get(0).add(new JSeparator(JSeparator.HORIZONTAL));
-        paineisEditarReserva.get(0).add(LabelCustoHospede = new JLabel("Custo do hospede:" + FrameReservas.hospedes.get(FrameReservas.indiceHospede).getCustoHospede()));
+        paineisEditarReserva.get(0).add(LabelCustoHospede = new JLabel("Custo do hospede:" + Reservas.hospedes.get(Reservas.indiceHospede).getCustoHospede()));
         paineisEditarReserva.get(0).getComponent(0).setFont(Home.fontePadrao);
         paineisEditarReserva.get(0).getComponent(2).setFont(Home.fontePadrao);
         paineisEditarReserva.get(0).getComponent(3).setFont(Home.fontePadrao);
@@ -135,7 +135,7 @@ public class FrameEditarReserva extends JFrame {
         editPodeSocializarComOutros.addActionListener(new EventoBotaoEditPodeSocializarComOutros());
         edDataCheckIn.addActionListener(new EventoBotaoEdDataCheckIn());
         edDataCheckOut.addActionListener(new EventoBotaoEdDataCheckOut());
-        if (FrameReservas.hospedes.get(0).getClass() == Cachorro.class) {
+        if (Reservas.hospedes.get(0).getClass() == Cachorro.class) {
             editPodePassear.addActionListener(new EventoBotaoEditPodePassear());
         } else {
             editQuantCompanheirosGa.addActionListener(new EventoBotaoEditQuantCompanheirosGatil());
@@ -150,12 +150,12 @@ public class FrameEditarReserva extends JFrame {
                 Home.telaReservas.setSize(Home.telaWidth, Home.telaHeight);
                 Home.telaReservas.setVisible(true);
 
-                if (FrameReservas.hospedeIsCachorro) {
-                    FrameReservas.opcoesHospedes.get(FrameEditarReserva.indiceButton).getLabelNome().setText("Nome do cachorro: " + FrameReservas.hospedes.get(FrameReservas.indiceHospede).getNome());
+                if (Reservas.hospedeIsCachorro) {
+                    Reservas.opcoesHospedes.get(EditarReserva.indiceButton).getLabelNome().setText("Nome do cachorro: " + Reservas.hospedes.get(Reservas.indiceHospede).getNome());
                 } else {
-                    FrameReservas.opcoesHospedes.get(FrameEditarReserva.indiceButton).getLabelNome().setText("Nome do gato: " + FrameReservas.hospedes.get(FrameReservas.indiceHospede).getNome());
+                    Reservas.opcoesHospedes.get(EditarReserva.indiceButton).getLabelNome().setText("Nome do gato: " + Reservas.hospedes.get(Reservas.indiceHospede).getNome());
                 }
-                FrameReservas.opcoesHospedes.get(FrameEditarReserva.indiceButton).getLabelCusto().setText("Custo da hospedagem: " + FrameReservas.hospedes.get(FrameReservas.indiceHospede).getCustoHospede());
+                Reservas.opcoesHospedes.get(EditarReserva.indiceButton).getLabelCusto().setText("Custo da hospedagem: " + Reservas.hospedes.get(Reservas.indiceHospede).getCustoHospede());
 
                 dispose();
             }

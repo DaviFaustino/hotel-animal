@@ -1,7 +1,7 @@
 package com.animal.hotel.view.funcoes;
 
-import com.animal.hotel.view.telas.FrameEditarReserva;
-import com.animal.hotel.view.telas.FrameReservas;
+import com.animal.hotel.view.telas.EditarReserva;
+import com.animal.hotel.view.telas.Reservas;
 import com.animal.hotel.view.telas.Home;
 
 import java.awt.event.ActionEvent;
@@ -36,8 +36,8 @@ public class EventosEditarReserva {
             entrada = JOptionPane.showInputDialog("Insira o nome do Hospede:");
             
             if (entrada != null && !entrada.equals("")) {
-                FrameEditarReserva.editNomeHospede.setText("Nome do Hospede: " + entrada);
-                FrameReservas.hospedes.get(FrameReservas.indiceHospede).setNome(entrada);
+                EditarReserva.editNomeHospede.setText("Nome do Hospede: " + entrada);
+                Reservas.hospedes.get(Reservas.indiceHospede).setNome(entrada);
             }
         }
     }
@@ -53,16 +53,16 @@ public class EventosEditarReserva {
                                                         null, opcs, null);
 
             if (escolha == 0) {
-                FrameEditarReserva.editFaseDaVida.setText("Fase da vida: Filhote");
-                FrameReservas.hospedes.get(FrameReservas.indiceHospede).setFaseDaVida("Filhote");
+                EditarReserva.editFaseDaVida.setText("Fase da vida: Filhote");
+                Reservas.hospedes.get(Reservas.indiceHospede).setFaseDaVida("Filhote");
             } else {
                 if (escolha == 1) {
-                    FrameEditarReserva.editFaseDaVida.setText("Fase da vida: Adulto");
-                    FrameReservas.hospedes.get(FrameReservas.indiceHospede).setFaseDaVida("Adulto");
+                    EditarReserva.editFaseDaVida.setText("Fase da vida: Adulto");
+                    Reservas.hospedes.get(Reservas.indiceHospede).setFaseDaVida("Adulto");
                 } else {
                     if (escolha == 2) {
-                        FrameEditarReserva.editFaseDaVida.setText("Fase da vida: Idoso");
-                        FrameReservas.hospedes.get(FrameReservas.indiceHospede).setFaseDaVida("Idoso");
+                        EditarReserva.editFaseDaVida.setText("Fase da vida: Idoso");
+                        Reservas.hospedes.get(Reservas.indiceHospede).setFaseDaVida("Idoso");
                     }
                 }
             }
@@ -76,9 +76,9 @@ public class EventosEditarReserva {
 
         @Override
         public void actionPerformed(ActionEvent arg0) {
-            FrameEditarReserva.dialogEscolhaNomeRacao = new JDialog(Home.telaEditarReserva);
-            FrameEditarReserva.dialogEscolhaNomeRacao.setSize(300, 100);
-            FrameEditarReserva.dialogEscolhaNomeRacao.setLocation((int) (Home.posicaoTela.getX() + Home.telaWidth / 2 - 150), (int) (Home.posicaoTela.getY() + Home.telaHeight / 2 - 50));
+            EditarReserva.dialogEscolhaNomeRacao = new JDialog(Home.telaEditarReserva);
+            EditarReserva.dialogEscolhaNomeRacao.setSize(300, 100);
+            EditarReserva.dialogEscolhaNomeRacao.setLocation((int) (Home.posicaoTela.getX() + Home.telaWidth / 2 - 150), (int) (Home.posicaoTela.getY() + Home.telaHeight / 2 - 50));
 
             opcoesRacoes = new HashMap<String, Float>();
             try {
@@ -98,29 +98,29 @@ public class EventosEditarReserva {
             }
 
             Object[] racoes = opcoesRacoes.keySet().toArray();
-            FrameEditarReserva.menuRacoes = new JComboBox<>(racoes);
+            EditarReserva.menuRacoes = new JComboBox<>(racoes);
 
             JPanel painelDialogRacao = new JPanel();
             painelDialogRacao.add(new JLabel("Escolha a ração do hospede:"));
-            painelDialogRacao.add(FrameEditarReserva.menuRacoes);
+            painelDialogRacao.add(EditarReserva.menuRacoes);
             JButton okBut = new JButton("   Ok   ");
             okBut.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent arg0) {
-                    FrameEditarReserva.editNomeRacao.setText("Ração do hospede: " + (String) FrameEditarReserva.menuRacoes.getSelectedItem());
-                    FrameReservas.hospedes.get(FrameReservas.indiceHospede).setNomeRacao((String) FrameEditarReserva.menuRacoes.getSelectedItem());
+                    EditarReserva.editNomeRacao.setText("Ração do hospede: " + (String) EditarReserva.menuRacoes.getSelectedItem());
+                    Reservas.hospedes.get(Reservas.indiceHospede).setNomeRacao((String) EditarReserva.menuRacoes.getSelectedItem());
 
-                    FrameReservas.hospedes.get(FrameReservas.indiceHospede).calculaGastoRacao();
-                    FrameEditarReserva.LabelGastoRacao.setText("Gasto com ração: " + FrameReservas.hospedes.get(FrameReservas.indiceHospede).getGastoComRacao());
+                    Reservas.hospedes.get(Reservas.indiceHospede).calculaGastoRacao();
+                    EditarReserva.LabelGastoRacao.setText("Gasto com ração: " + Reservas.hospedes.get(Reservas.indiceHospede).getGastoComRacao());
                     atualizaCusto();
 
-                    FrameEditarReserva.dialogEscolhaNomeRacao.dispose();
+                    EditarReserva.dialogEscolhaNomeRacao.dispose();
                 }
             });
             painelDialogRacao.add(okBut);
 
-            FrameEditarReserva.dialogEscolhaNomeRacao.add(painelDialogRacao);
-            FrameEditarReserva.dialogEscolhaNomeRacao.setVisible(true);
+            EditarReserva.dialogEscolhaNomeRacao.add(painelDialogRacao);
+            EditarReserva.dialogEscolhaNomeRacao.setVisible(true);
         }
     }
 
@@ -141,11 +141,11 @@ public class EventosEditarReserva {
             } while (entradaInt < 0 && entrada != null);
 
             if (entrada != null && !entrada.equals("")) {
-                FrameEditarReserva.editQuantRacaoGramas.setText("Quantidade de ração (g): " + entrada);
-                FrameReservas.hospedes.get(FrameReservas.indiceHospede).setQuantRacaoGramas(entradaInt);
+                EditarReserva.editQuantRacaoGramas.setText("Quantidade de ração (g): " + entrada);
+                Reservas.hospedes.get(Reservas.indiceHospede).setQuantRacaoGramas(entradaInt);
 
-                FrameReservas.hospedes.get(FrameReservas.indiceHospede).calculaGastoRacao();
-                FrameEditarReserva.LabelGastoRacao.setText("Gasto com ração: " + FrameReservas.hospedes.get(FrameReservas.indiceHospede).getGastoComRacao());
+                Reservas.hospedes.get(Reservas.indiceHospede).calculaGastoRacao();
+                EditarReserva.LabelGastoRacao.setText("Gasto com ração: " + Reservas.hospedes.get(Reservas.indiceHospede).getGastoComRacao());
 
                 atualizaCusto();
             }
@@ -155,170 +155,170 @@ public class EventosEditarReserva {
     public static class EventoBotaoEditPodeSocializarComOutros implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent arg0) {
-            FrameEditarReserva.dialogPodeSocializar = new JDialog(Home.telaEditarReserva);
-            FrameEditarReserva.dialogPodeSocializar.setSize(250, 100);
-            FrameEditarReserva.dialogPodeSocializar.setLocation((int) Home.posicaoTela.getX() + Home.telaWidth / 2 - 125, (int) Home.posicaoTela.getY() + Home.telaHeight / 2 - 50);
+            EditarReserva.dialogPodeSocializar = new JDialog(Home.telaEditarReserva);
+            EditarReserva.dialogPodeSocializar.setSize(250, 100);
+            EditarReserva.dialogPodeSocializar.setLocation((int) Home.posicaoTela.getX() + Home.telaWidth / 2 - 125, (int) Home.posicaoTela.getY() + Home.telaHeight / 2 - 50);
 
-            FrameEditarReserva.simSocia = new JRadioButton("Sim");
-            FrameEditarReserva.naoSocia = new JRadioButton("Não");
-            FrameEditarReserva.naoSocia.setSelected(FrameReservas.hospedes.get(FrameReservas.indiceHospede).isPodeSocializarComOutros());
+            EditarReserva.simSocia = new JRadioButton("Sim");
+            EditarReserva.naoSocia = new JRadioButton("Não");
+            EditarReserva.naoSocia.setSelected(Reservas.hospedes.get(Reservas.indiceHospede).isPodeSocializarComOutros());
 
-            FrameEditarReserva.grupoSocia = new ButtonGroup();
-            FrameEditarReserva.grupoSocia.add(FrameEditarReserva.simSocia);
-            FrameEditarReserva.grupoSocia.add(FrameEditarReserva.naoSocia);
+            EditarReserva.grupoSocia = new ButtonGroup();
+            EditarReserva.grupoSocia.add(EditarReserva.simSocia);
+            EditarReserva.grupoSocia.add(EditarReserva.naoSocia);
 
             JPanel painelDialogSocializar = new JPanel();
             painelDialogSocializar.add(new JLabel("O hospede pode socializar?"));
-            painelDialogSocializar.add(FrameEditarReserva.simSocia);
-            painelDialogSocializar.add(FrameEditarReserva.naoSocia);
+            painelDialogSocializar.add(EditarReserva.simSocia);
+            painelDialogSocializar.add(EditarReserva.naoSocia);
             JButton okBut = new JButton("   Ok   ");
             okBut.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent arg0) {
-                    if (FrameEditarReserva.simSocia.isSelected()) {
-                        FrameEditarReserva.editPodeSocializarComOutros.setText("Pode socializar com outros animais: " + true);
-                        FrameReservas.hospedes.get(FrameReservas.indiceHospede).setPodeSocializarComOutros(true);
+                    if (EditarReserva.simSocia.isSelected()) {
+                        EditarReserva.editPodeSocializarComOutros.setText("Pode socializar com outros animais: " + true);
+                        Reservas.hospedes.get(Reservas.indiceHospede).setPodeSocializarComOutros(true);
                     } else {
-                        FrameEditarReserva.editPodeSocializarComOutros.setText("Pode socializar com outros animais: " + false);
-                        FrameReservas.hospedes.get(FrameReservas.indiceHospede).setPodeSocializarComOutros(false);
+                        EditarReserva.editPodeSocializarComOutros.setText("Pode socializar com outros animais: " + false);
+                        Reservas.hospedes.get(Reservas.indiceHospede).setPodeSocializarComOutros(false);
                     }
                     atualizaCusto();
 
-                    FrameEditarReserva.dialogPodeSocializar.dispose();
+                    EditarReserva.dialogPodeSocializar.dispose();
                 }
             });
             painelDialogSocializar.add(okBut);
 
-            FrameEditarReserva.dialogPodeSocializar.add(painelDialogSocializar);
-            FrameEditarReserva.dialogPodeSocializar.setVisible(true);
+            EditarReserva.dialogPodeSocializar.add(painelDialogSocializar);
+            EditarReserva.dialogPodeSocializar.setVisible(true);
         }
     }
 
     public static class EventoBotaoEdDataCheckIn implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent arg0) {
-            FrameEditarReserva.dialogDataCheckIn = new JDialog(Home.telaEditarReserva);
-            FrameEditarReserva.dialogDataCheckIn.setSize(250, 100);
-            FrameEditarReserva.dialogDataCheckIn.setLocation(((int) Home.posicaoTela.getX() + Home.telaWidth / 2 - 150), ((int) Home.posicaoTela.getY() + Home.telaHeight / 2 - 50));
+            EditarReserva.dialogDataCheckIn = new JDialog(Home.telaEditarReserva);
+            EditarReserva.dialogDataCheckIn.setSize(250, 100);
+            EditarReserva.dialogDataCheckIn.setLocation(((int) Home.posicaoTela.getX() + Home.telaWidth / 2 - 150), ((int) Home.posicaoTela.getY() + Home.telaHeight / 2 - 50));
 
-            FrameEditarReserva.entradasEditDataCheckIn = new ArrayList<JTextField>();
+            EditarReserva.entradasEditDataCheckIn = new ArrayList<JTextField>();
             for (int i = 0; i < 3; i++) {
-                FrameEditarReserva.entradasEditDataCheckIn.add(new JTextField());
+                EditarReserva.entradasEditDataCheckIn.add(new JTextField());
             }
-            FrameEditarReserva.entradasEditDataCheckIn.get(0).setColumns(2);
-            FrameEditarReserva.entradasEditDataCheckIn.get(1).setColumns(2);
-            FrameEditarReserva.entradasEditDataCheckIn.get(2).setColumns(4);
+            EditarReserva.entradasEditDataCheckIn.get(0).setColumns(2);
+            EditarReserva.entradasEditDataCheckIn.get(1).setColumns(2);
+            EditarReserva.entradasEditDataCheckIn.get(2).setColumns(4);
 
             JButton okBut = new JButton("   Ok   ");
             okBut.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent arg0) {
-                    String[] data = {FrameEditarReserva.entradasEditDataCheckIn.get(0).getText(), FrameEditarReserva.entradasEditDataCheckIn.get(1).getText(), FrameEditarReserva.entradasEditDataCheckIn.get(2).getText()};
+                    String[] data = {EditarReserva.entradasEditDataCheckIn.get(0).getText(), EditarReserva.entradasEditDataCheckIn.get(1).getText(), EditarReserva.entradasEditDataCheckIn.get(2).getText()};
 
-                    FrameEditarReserva.edDataCheckIn.setText("Data de check-in: " + Arrays.toString(data));
-                    FrameReservas.hospedes.get(FrameReservas.indiceHospede).setDataCheckIn(data);
+                    EditarReserva.edDataCheckIn.setText("Data de check-in: " + Arrays.toString(data));
+                    Reservas.hospedes.get(Reservas.indiceHospede).setDataCheckIn(data);
                     atualizaCusto();
 
-                    FrameEditarReserva.dialogDataCheckIn.dispose();
+                    EditarReserva.dialogDataCheckIn.dispose();
                 }
             });
 
             JPanel painelDialogDataCheckIn = new JPanel();
             painelDialogDataCheckIn.add(new JLabel("   Informe a data de check-in:   "));
-            painelDialogDataCheckIn.add(FrameEditarReserva.entradasEditDataCheckIn.get(0));
-            painelDialogDataCheckIn.add(FrameEditarReserva.entradasEditDataCheckIn.get(1));
-            painelDialogDataCheckIn.add(FrameEditarReserva.entradasEditDataCheckIn.get(2));
+            painelDialogDataCheckIn.add(EditarReserva.entradasEditDataCheckIn.get(0));
+            painelDialogDataCheckIn.add(EditarReserva.entradasEditDataCheckIn.get(1));
+            painelDialogDataCheckIn.add(EditarReserva.entradasEditDataCheckIn.get(2));
             painelDialogDataCheckIn.add(okBut);
 
-            FrameEditarReserva.dialogDataCheckIn.add(painelDialogDataCheckIn);
-            FrameEditarReserva.dialogDataCheckIn.setVisible(true);
+            EditarReserva.dialogDataCheckIn.add(painelDialogDataCheckIn);
+            EditarReserva.dialogDataCheckIn.setVisible(true);
         }
     }
 
     public static class EventoBotaoEdDataCheckOut implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent arg0) {
-            FrameEditarReserva.dialogDataCheckOut = new JDialog(Home.telaEditarReserva);
-            FrameEditarReserva.dialogDataCheckOut.setSize(250, 100);
-            FrameEditarReserva.dialogDataCheckOut.setLocation(((int) Home.posicaoTela.getX() + Home.telaWidth / 2 - 150), ((int) Home.posicaoTela.getY() + Home.telaHeight / 2 - 50));
+            EditarReserva.dialogDataCheckOut = new JDialog(Home.telaEditarReserva);
+            EditarReserva.dialogDataCheckOut.setSize(250, 100);
+            EditarReserva.dialogDataCheckOut.setLocation(((int) Home.posicaoTela.getX() + Home.telaWidth / 2 - 150), ((int) Home.posicaoTela.getY() + Home.telaHeight / 2 - 50));
 
-            FrameEditarReserva.entradasEditDataCheckOut = new ArrayList<JTextField>();
+            EditarReserva.entradasEditDataCheckOut = new ArrayList<JTextField>();
             for (int i = 0; i < 3; i++) {
-                FrameEditarReserva.entradasEditDataCheckOut.add(new JTextField());
+                EditarReserva.entradasEditDataCheckOut.add(new JTextField());
             }
-            FrameEditarReserva.entradasEditDataCheckOut.get(0).setColumns(2);
-            FrameEditarReserva.entradasEditDataCheckOut.get(1).setColumns(2);
-            FrameEditarReserva.entradasEditDataCheckOut.get(2).setColumns(4);
+            EditarReserva.entradasEditDataCheckOut.get(0).setColumns(2);
+            EditarReserva.entradasEditDataCheckOut.get(1).setColumns(2);
+            EditarReserva.entradasEditDataCheckOut.get(2).setColumns(4);
 
             JButton okBut = new JButton("   Ok   ");
             okBut.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent arg0) {
-                    String[] data = {FrameEditarReserva.entradasEditDataCheckOut.get(0).getText(), FrameEditarReserva.entradasEditDataCheckOut.get(1).getText(), FrameEditarReserva.entradasEditDataCheckOut.get(2).getText()};
+                    String[] data = {EditarReserva.entradasEditDataCheckOut.get(0).getText(), EditarReserva.entradasEditDataCheckOut.get(1).getText(), EditarReserva.entradasEditDataCheckOut.get(2).getText()};
 
-                    FrameEditarReserva.edDataCheckOut.setText("Data de check-out: " + Arrays.toString(data));
-                    FrameReservas.hospedes.get(FrameReservas.indiceHospede).setDataCheckOut(data);
+                    EditarReserva.edDataCheckOut.setText("Data de check-out: " + Arrays.toString(data));
+                    Reservas.hospedes.get(Reservas.indiceHospede).setDataCheckOut(data);
                     atualizaCusto();
 
-                    FrameEditarReserva.dialogDataCheckOut.dispose();
+                    EditarReserva.dialogDataCheckOut.dispose();
                 }
             });
 
             JPanel painelDialogDataCheckOut = new JPanel();
             painelDialogDataCheckOut.add(new JLabel("   Informe a data de check-out:   "));
-            painelDialogDataCheckOut.add(FrameEditarReserva.entradasEditDataCheckOut.get(0));
-            painelDialogDataCheckOut.add(FrameEditarReserva.entradasEditDataCheckOut.get(1));
-            painelDialogDataCheckOut.add(FrameEditarReserva.entradasEditDataCheckOut.get(2));
+            painelDialogDataCheckOut.add(EditarReserva.entradasEditDataCheckOut.get(0));
+            painelDialogDataCheckOut.add(EditarReserva.entradasEditDataCheckOut.get(1));
+            painelDialogDataCheckOut.add(EditarReserva.entradasEditDataCheckOut.get(2));
             painelDialogDataCheckOut.add(okBut);
 
-            FrameEditarReserva.dialogDataCheckOut.add(painelDialogDataCheckOut);
-            FrameEditarReserva.dialogDataCheckOut.setVisible(true);
+            EditarReserva.dialogDataCheckOut.add(painelDialogDataCheckOut);
+            EditarReserva.dialogDataCheckOut.setVisible(true);
         }
     }
 
     public static class EventoBotaoEditPodePassear implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent arg0) {
-            FrameEditarReserva.dialogPodePassear = new JDialog(Home.telaEditarReserva);
-            FrameEditarReserva.dialogPodePassear.setSize(250, 100);
-            FrameEditarReserva.dialogPodePassear.setLocation((int) Home.posicaoTela.getX() + Home.telaWidth / 2 - 125, (int) Home.posicaoTela.getY() + Home.telaHeight / 2 - 50);
+            EditarReserva.dialogPodePassear = new JDialog(Home.telaEditarReserva);
+            EditarReserva.dialogPodePassear.setSize(250, 100);
+            EditarReserva.dialogPodePassear.setLocation((int) Home.posicaoTela.getX() + Home.telaWidth / 2 - 125, (int) Home.posicaoTela.getY() + Home.telaHeight / 2 - 50);
 
-            FrameEditarReserva.simPassear = new JRadioButton("Sim");
-            FrameEditarReserva.naoPassear = new JRadioButton("Não");
-            FrameEditarReserva.naoPassear.setSelected(true);
+            EditarReserva.simPassear = new JRadioButton("Sim");
+            EditarReserva.naoPassear = new JRadioButton("Não");
+            EditarReserva.naoPassear.setSelected(true);
             
-            FrameEditarReserva.grupoPassear = new ButtonGroup();
-            FrameEditarReserva.grupoPassear.add(FrameEditarReserva.simPassear);
-            FrameEditarReserva.grupoPassear.add(FrameEditarReserva.naoPassear);
+            EditarReserva.grupoPassear = new ButtonGroup();
+            EditarReserva.grupoPassear.add(EditarReserva.simPassear);
+            EditarReserva.grupoPassear.add(EditarReserva.naoPassear);
 
             JPanel painelDialogPodePassear = new JPanel();
             painelDialogPodePassear.add(new JLabel("    O hospede pode passear?    "));
-            painelDialogPodePassear.add(FrameEditarReserva.simPassear);
-            painelDialogPodePassear.add(FrameEditarReserva.naoPassear);
+            painelDialogPodePassear.add(EditarReserva.simPassear);
+            painelDialogPodePassear.add(EditarReserva.naoPassear);
 
             JButton okBut = new JButton("   Ok   ");
             okBut.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent arg0) {
-                    Cachorro cachorro = (Cachorro) FrameReservas.hospedes.get(FrameReservas.indiceHospede);
+                    Cachorro cachorro = (Cachorro) Reservas.hospedes.get(Reservas.indiceHospede);
 
-                    if (FrameEditarReserva.simPassear.isSelected()) {
+                    if (EditarReserva.simPassear.isSelected()) {
                         cachorro.setPodePassear(true);
-                        FrameEditarReserva.editPodePassear.setText("Pode passear: " + true);
+                        EditarReserva.editPodePassear.setText("Pode passear: " + true);
                     } else {
                         cachorro.setPodePassear(false);
-                        FrameEditarReserva.editPodePassear.setText("Pode passear: " + false);
+                        EditarReserva.editPodePassear.setText("Pode passear: " + false);
                     }
-                    FrameReservas.hospedes.set(FrameReservas.indiceHospede, (Hospede) cachorro);
+                    Reservas.hospedes.set(Reservas.indiceHospede, (Hospede) cachorro);
                     atualizaCusto();
                     
-                    FrameEditarReserva.dialogPodePassear.dispose();
+                    EditarReserva.dialogPodePassear.dispose();
                 }
             });
             painelDialogPodePassear.add(okBut);
 
-            FrameEditarReserva.dialogPodePassear.add(painelDialogPodePassear);
-            FrameEditarReserva.dialogPodePassear.setVisible(true);
+            EditarReserva.dialogPodePassear.add(painelDialogPodePassear);
+            EditarReserva.dialogPodePassear.setVisible(true);
         }
     }
 
@@ -333,32 +333,32 @@ public class EventosEditarReserva {
                                                     null, opcsC, null);
 
 
-            Gato gato = (Gato) FrameReservas.hospedes.get(FrameReservas.indiceHospede);
+            Gato gato = (Gato) Reservas.hospedes.get(Reservas.indiceHospede);
             if (escolhaC == -1) {
                 escolhaC = gato.getQuantCompanheirosGatil();
             }
             gato.setQuantCompanheirosGatil(escolhaC);
 
-            FrameReservas.hospedes.set(FrameReservas.indiceHospede, (Hospede) gato);
-            FrameEditarReserva.editQuantCompanheirosGa.setText("Quantidade de companheiros: " + escolhaC);
+            Reservas.hospedes.set(Reservas.indiceHospede, (Hospede) gato);
+            EditarReserva.editQuantCompanheirosGa.setText("Quantidade de companheiros: " + escolhaC);
 
             atualizaCusto();
         }
     }
 
     private static void atualizaCusto() {
-        if (FrameReservas.hospedes.get(0).getClass() == Cachorro.class) {
-            Cachorro cachorro = (Cachorro) FrameReservas.hospedes.get(FrameReservas.indiceHospede);
+        if (Reservas.hospedes.get(0).getClass() == Cachorro.class) {
+            Cachorro cachorro = (Cachorro) Reservas.hospedes.get(Reservas.indiceHospede);
             cachorro.calculaCusto();
             
-            FrameReservas.hospedes.get(FrameReservas.indiceHospede).setCustoHospede(cachorro.getCustoHospede());
-            FrameEditarReserva.LabelCustoHospede.setText("Custo do hospede:" + Float.toString(cachorro.getCustoHospede()));
+            Reservas.hospedes.get(Reservas.indiceHospede).setCustoHospede(cachorro.getCustoHospede());
+            EditarReserva.LabelCustoHospede.setText("Custo do hospede:" + Float.toString(cachorro.getCustoHospede()));
         } else {
-            Gato gato = (Gato) FrameReservas.hospedes.get(FrameReservas.indiceHospede);
+            Gato gato = (Gato) Reservas.hospedes.get(Reservas.indiceHospede);
             gato.calculaCusto();
             
-            FrameReservas.hospedes.get(FrameReservas.indiceHospede).setCustoHospede(gato.getCustoHospede());
-            FrameEditarReserva.LabelCustoHospede.setText(Float.toString(gato.getCustoHospede()));
+            Reservas.hospedes.get(Reservas.indiceHospede).setCustoHospede(gato.getCustoHospede());
+            EditarReserva.LabelCustoHospede.setText(Float.toString(gato.getCustoHospede()));
         }
     }
 }

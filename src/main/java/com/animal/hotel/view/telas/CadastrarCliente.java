@@ -19,7 +19,7 @@ import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
 import java.awt.Point;
 
-public class FrameCadastrarCliente extends JFrame {
+public class CadastrarCliente extends JFrame {
     static JButton voltarCadCliente, salvarCadCliente;
     static ArrayList<JLabel> labelsCadCliente;
     static ArrayList<JTextField> entradasTextoCadCliente;
@@ -27,7 +27,7 @@ public class FrameCadastrarCliente extends JFrame {
     public static int telaHeight;
     public static Point posicaoTela;
 
-    public FrameCadastrarCliente() {
+    public CadastrarCliente() {
         posicaoTela = Home.posicaoTela;
         telaWidth = Home.telaWidth;
         telaHeight = Home.telaHeight;

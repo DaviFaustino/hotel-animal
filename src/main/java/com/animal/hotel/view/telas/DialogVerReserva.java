@@ -20,24 +20,24 @@ public class DialogVerReserva extends JDialog {
         JPanel painelVerReserva = new JPanel();
 
         painelVerReserva.add(new JSeparator());
-        painelVerReserva.add(new JLabel("Número de ID responsável: " + FrameReservas.hospedes.get(FrameReservas.indiceHospede).getNumeroIdentificacaoResponsavel()));
-        painelVerReserva.add(new JLabel("Número de identificação: " + FrameReservas.hospedes.get(FrameReservas.indiceHospede).getNumeroIdentificacao()));
-        painelVerReserva.add(new JLabel("Nome do hospede: " + FrameReservas.hospedes.get(FrameReservas.indiceHospede).getNome()));
-        painelVerReserva.add(new JLabel("Fase da vida: " + FrameReservas.hospedes.get(FrameReservas.indiceHospede).getFaseDaVida()));
-        painelVerReserva.add(new JLabel("Ração do hospede: " + FrameReservas.hospedes.get(FrameReservas.indiceHospede).getNomeRacao()));
-        painelVerReserva.add(new JLabel("Quantidade de ração (g): " + FrameReservas.hospedes.get(FrameReservas.indiceHospede).getQuantRacaoGramas()));
-        painelVerReserva.add(new JLabel("Gasto com ração: " + FrameReservas.hospedes.get(FrameReservas.indiceHospede).getGastoComRacao()));
-        painelVerReserva.add(new JLabel("Pode socializar com outros animais: " + FrameReservas.hospedes.get(FrameReservas.indiceHospede).isPodeSocializarComOutros()));
-        painelVerReserva.add(new JLabel("Data de check-in: " + Arrays.toString(FrameReservas.hospedes.get(FrameReservas.indiceHospede).getDataCheckIn())));
-        painelVerReserva.add(new JLabel("Data de check-out: " + Arrays.toString(FrameReservas.hospedes.get(FrameReservas.indiceHospede).getDataCheckOut())));
-        if (FrameReservas.hospedes.get(0).getClass() == Cachorro.class) {
-            Cachorro cachorro = (Cachorro) FrameReservas.hospedes.get(FrameReservas.indiceHospede);
+        painelVerReserva.add(new JLabel("Número de ID responsável: " + Reservas.hospedes.get(Reservas.indiceHospede).getNumeroIdentificacaoResponsavel()));
+        painelVerReserva.add(new JLabel("Número de identificação: " + Reservas.hospedes.get(Reservas.indiceHospede).getNumeroIdentificacao()));
+        painelVerReserva.add(new JLabel("Nome do hospede: " + Reservas.hospedes.get(Reservas.indiceHospede).getNome()));
+        painelVerReserva.add(new JLabel("Fase da vida: " + Reservas.hospedes.get(Reservas.indiceHospede).getFaseDaVida()));
+        painelVerReserva.add(new JLabel("Ração do hospede: " + Reservas.hospedes.get(Reservas.indiceHospede).getNomeRacao()));
+        painelVerReserva.add(new JLabel("Quantidade de ração (g): " + Reservas.hospedes.get(Reservas.indiceHospede).getQuantRacaoGramas()));
+        painelVerReserva.add(new JLabel("Gasto com ração: " + Reservas.hospedes.get(Reservas.indiceHospede).getGastoComRacao()));
+        painelVerReserva.add(new JLabel("Pode socializar com outros animais: " + Reservas.hospedes.get(Reservas.indiceHospede).isPodeSocializarComOutros()));
+        painelVerReserva.add(new JLabel("Data de check-in: " + Arrays.toString(Reservas.hospedes.get(Reservas.indiceHospede).getDataCheckIn())));
+        painelVerReserva.add(new JLabel("Data de check-out: " + Arrays.toString(Reservas.hospedes.get(Reservas.indiceHospede).getDataCheckOut())));
+        if (Reservas.hospedes.get(0).getClass() == Cachorro.class) {
+            Cachorro cachorro = (Cachorro) Reservas.hospedes.get(Reservas.indiceHospede);
             add(new JLabel("Pode passear: " + cachorro.getPodePassear()));
         } else {
-            Gato gato = (Gato) FrameReservas.hospedes.get(FrameReservas.indiceHospede);
+            Gato gato = (Gato) Reservas.hospedes.get(Reservas.indiceHospede);
             add(new JLabel("Quantidade de companheiros: " + gato.getQuantCompanheirosGatil()));
         }
-        painelVerReserva.add(new JLabel("Custo do hospede:" + FrameReservas.hospedes.get(FrameReservas.indiceHospede).getCustoHospede()));
+        painelVerReserva.add(new JLabel("Custo do hospede:" + Reservas.hospedes.get(Reservas.indiceHospede).getCustoHospede()));
         painelVerReserva.add(new JSeparator());
 
         for (int i = 0; i < painelVerReserva.getComponentCount() - 1; i++) {

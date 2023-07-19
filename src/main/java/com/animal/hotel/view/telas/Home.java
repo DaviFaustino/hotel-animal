@@ -38,12 +38,12 @@ public class Home {
     static int tamanhoCimaBaixo;
     static JButton butClientes, butCadastrarCliente, butHospedes, butExit;
     public static JFrame telaPrincipal;
-    public static FrameCadastrarCliente telaCadastrarCliente;
-    public static FrameEditarReserva  telaEditarReserva;
-    public static FrameFazerReserva telaFazerReserva;
-    public static FrameClientes telaClientes;
-    public static FrameEditarCliente telaEditarCliente;
-    public static FrameReservas telaReservas;
+    public static CadastrarCliente telaCadastrarCliente;
+    public static EditarReserva  telaEditarReserva;
+    public static FazerReserva telaFazerReserva;
+    public static Clientes telaClientes;
+    public static EditarCliente telaEditarCliente;
+    public static Reservas telaReservas;
     static ArrayList<JPanel> paineisPrincipal;
     public static int telaWidth = 700;
     public static int telaHeight = 500;

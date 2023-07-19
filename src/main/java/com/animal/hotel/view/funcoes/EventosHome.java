@@ -1,8 +1,8 @@
 package com.animal.hotel.view.funcoes;
 
-import com.animal.hotel.view.telas.FrameCadastrarCliente;
-import com.animal.hotel.view.telas.FrameClientes;
-import com.animal.hotel.view.telas.FrameReservas;
+import com.animal.hotel.view.telas.CadastrarCliente;
+import com.animal.hotel.view.telas.Clientes;
+import com.animal.hotel.view.telas.Reservas;
 import com.animal.hotel.view.telas.Home;
 
 import java.awt.event.ActionEvent;
@@ -15,7 +15,7 @@ public class EventosHome {
 
         @Override
         public void actionPerformed(ActionEvent arg0) {
-            Home.telaCadastrarCliente = new FrameCadastrarCliente();
+            Home.telaCadastrarCliente = new CadastrarCliente();
         }
     }
 
@@ -24,7 +24,7 @@ public class EventosHome {
         @Override
         public void actionPerformed(ActionEvent arg0) {
             Home.alterar = true;
-            Home.telaClientes = new FrameClientes();
+            Home.telaClientes = new Clientes();
         }
     }
 
@@ -50,15 +50,15 @@ public class EventosHome {
                                                         null, opcs, null);
 
             if (escolha == 0) {
-                FrameReservas.hospedeIsCachorro = true;
+                Reservas.hospedeIsCachorro = true;
             } else {
                 if (escolha == 1) {
-                    FrameReservas.hospedeIsCachorro = false;
+                    Reservas.hospedeIsCachorro = false;
                 }
             }
 
             if (escolha != 2) {
-                Home.telaReservas = new FrameReservas("0000", new float[2]);
+                Home.telaReservas = new Reservas("0000", new float[2]);
                 Home.telaPrincipal.setVisible(false);
             }
         }

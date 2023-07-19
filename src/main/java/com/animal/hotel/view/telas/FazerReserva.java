@@ -26,7 +26,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
-public class FrameFazerReserva extends JFrame {
+public class FazerReserva extends JFrame {
     static ArrayList<JLabel> labelsFazerReserva;
     static boolean hospedeIsCachorro;
     static JRadioButton filhote, adulto, idoso, simPassear, naoPassear, simSocia, naoSocia;
@@ -36,9 +36,9 @@ public class FrameFazerReserva extends JFrame {
     static ButtonGroup grupoSocia, grupoPassear, grupoFase;
     static HashMap<String, Float> opcoesRacoes;
 
-    public FrameFazerReserva(boolean hospedeIsCachorro) {
+    public FazerReserva(boolean hospedeIsCachorro) {
         super();
-        FrameFazerReserva.hospedeIsCachorro = hospedeIsCachorro;
+        FazerReserva.hospedeIsCachorro = hospedeIsCachorro;
 
         setTitle("Fazer reserva de hospede");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -69,7 +69,7 @@ public class FrameFazerReserva extends JFrame {
                 labelsFazerReserva.get(4).setBounds(centroX - 113, centroY - 60, 200, 30);
                 labelsFazerReserva.get(5).setBounds(centroX - 122, centroY - 25, 200, 30);
                 labelsFazerReserva.get(6).setBounds(centroX - 250, centroY + 10, 300, 30);
-                if (FrameFazerReserva.hospedeIsCachorro) {
+                if (FazerReserva.hospedeIsCachorro) {
                     labelsFazerReserva.get(7).setBounds(centroX - 137, centroY + 45, 200, 30);
                     simPassear.setBounds(centroX + 85, centroY + 45, 70, 25);
                     naoPassear.setBounds(centroX + 15, centroY + 45, 70, 25);
@@ -189,13 +189,13 @@ public class FrameFazerReserva extends JFrame {
             public void actionPerformed(ActionEvent arg0) {
                 
                 Hospede hospede;
-                if (FrameFazerReserva.hospedeIsCachorro) {
+                if (FazerReserva.hospedeIsCachorro) {
                     hospede = new Cachorro();
                 } else {
                     hospede = new Gato();
                 }
 
-                hospede.setNumeroIdentificacaoResponsavel(FrameClientes.clientes.get(FrameClientes.indiceCliente).getNumeroIdentificacao());
+                hospede.setNumeroIdentificacaoResponsavel(Clientes.clientes.get(Clientes.indiceCliente).getNumeroIdentificacao());
                 hospede.setNome(entradasTextoReservaHospede.get(0).getText());
                 if (filhote.isSelected()) {
                     hospede.setFaseDaVida("Filhote");
@@ -219,7 +219,7 @@ public class FrameFazerReserva extends JFrame {
                     hospede.setPodeSocializarComOutros(false);
                 }
 
-                if (FrameFazerReserva.hospedeIsCachorro) {
+                if (FazerReserva.hospedeIsCachorro) {
                     Cachorro cachorro = (Cachorro) hospede;
 
                     if (simPassear.isSelected()) {

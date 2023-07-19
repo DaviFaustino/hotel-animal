@@ -31,7 +31,7 @@ import javax.swing.JScrollPane;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
-public class FrameReservas extends JFrame {
+public class Reservas extends JFrame {
     static int larguraPainelHospedes = 400;
     public static boolean hospedeIsCachorro;
     public static List<Hospede> hospedes;
@@ -42,9 +42,9 @@ public class FrameReservas extends JFrame {
     public static int indiceHospede;
     static float[] custoCachorrosGatos;
     
-    public FrameReservas(String idResponsavel, float[] custoCachorrosGatos) {
+    public Reservas(String idResponsavel, float[] custoCachorrosGatos) {
         super();
-        FrameReservas.custoCachorrosGatos = custoCachorrosGatos;
+        Reservas.custoCachorrosGatos = custoCachorrosGatos;
 
         String jsonString = "[]";
 
@@ -156,20 +156,20 @@ public class FrameReservas extends JFrame {
                     try {
                         float somaCustos = 0f;
                         for (int i = 0; i < hospedes.size(); i++) {
-                            if (hospedes.get(i).getNumeroIdentificacaoResponsavel().equals(FrameClientes.clientes.get(FrameClientes.indiceCliente).getNumeroIdentificacao())) {
+                            if (hospedes.get(i).getNumeroIdentificacaoResponsavel().equals(Clientes.clientes.get(Clientes.indiceCliente).getNumeroIdentificacao())) {
                                 somaCustos += hospedes.get(i).getCustoHospede();
                             }
                         }
 
                         if (hospedeIsCachorro) {
-                            FrameClientes.clientes.get(FrameClientes.indiceCliente).getCustoCachorrosGatos()[0] = somaCustos;
+                            Clientes.clientes.get(Clientes.indiceCliente).getCustoCachorrosGatos()[0] = somaCustos;
                             Arquivos.salvar(hospedes, 0);
                         } else {
-                            FrameClientes.clientes.get(FrameClientes.indiceCliente).getCustoCachorrosGatos()[1] = somaCustos;
+                            Clientes.clientes.get(Clientes.indiceCliente).getCustoCachorrosGatos()[1] = somaCustos;
                             Arquivos.salvar(hospedes, 1);
                         }
                         
-                        ((JLabel) FrameEditarCliente.paineisEditarCliente.get(0).getComponent(8)).setText("Débito: " + (FrameClientes.clientes.get(FrameClientes.indiceCliente).getCustoCachorrosGatos()[0] + FrameClientes.clientes.get(FrameClientes.indiceCliente).getCustoCachorrosGatos()[1]));
+                        ((JLabel) EditarCliente.paineisEditarCliente.get(0).getComponent(8)).setText("Débito: " + (Clientes.clientes.get(Clientes.indiceCliente).getCustoCachorrosGatos()[0] + Clientes.clientes.get(Clientes.indiceCliente).getCustoCachorrosGatos()[1]));
                     } catch (IOException e) {
                         e.printStackTrace();
                     }

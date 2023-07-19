@@ -1,9 +1,9 @@
 package com.animal.hotel.view.funcoes;
 
-import com.animal.hotel.view.telas.FrameClientes;
-import com.animal.hotel.view.telas.FrameEditarCliente;
-import com.animal.hotel.view.telas.FrameFazerReserva;
-import com.animal.hotel.view.telas.FrameReservas;
+import com.animal.hotel.view.telas.Clientes;
+import com.animal.hotel.view.telas.EditarCliente;
+import com.animal.hotel.view.telas.FazerReserva;
+import com.animal.hotel.view.telas.Reservas;
 import com.animal.hotel.view.telas.Home;
 
 import java.awt.event.ActionEvent;
@@ -20,8 +20,8 @@ public class EventosEditarCliente {
             entrada = JOptionPane.showInputDialog("Insira o nome do Cliente:");
             
             if (entrada != null && !entrada.equals("")) {
-                FrameEditarCliente.editNomeCliente.setText("Nome do cliente: " + entrada);
-                FrameClientes.clientes.get(FrameClientes.indiceCliente).setNome(entrada);
+                EditarCliente.editNomeCliente.setText("Nome do cliente: " + entrada);
+                Clientes.clientes.get(Clientes.indiceCliente).setNome(entrada);
             }
         }     
     }
@@ -34,8 +34,8 @@ public class EventosEditarCliente {
             entrada = JOptionPane.showInputDialog("Insira o número de telefone:");
 
             if (entrada != null && !entrada.equals("")) {
-                FrameEditarCliente.editTelefoneCliente.setText("Número de telefone: " + entrada);
-                FrameClientes.clientes.get(FrameClientes.indiceCliente).setNumeroTelefone(entrada);
+                EditarCliente.editTelefoneCliente.setText("Número de telefone: " + entrada);
+                Clientes.clientes.get(Clientes.indiceCliente).setNumeroTelefone(entrada);
             }
         }     
     }
@@ -48,8 +48,8 @@ public class EventosEditarCliente {
             entrada = JOptionPane.showInputDialog("Insira o e-mail do cliente:");
 
             if (entrada != null && !entrada.equals("")) {
-                FrameEditarCliente.editEmailCliente.setText("E-mail: " + entrada);
-                FrameClientes.clientes.get(FrameClientes.indiceCliente).setEmail(entrada);
+                EditarCliente.editEmailCliente.setText("E-mail: " + entrada);
+                Clientes.clientes.get(Clientes.indiceCliente).setEmail(entrada);
             }
         }     
     }
@@ -74,7 +74,7 @@ public class EventosEditarCliente {
             }
 
             if (escolha != 2) {
-                Home.telaFazerReserva = new FrameFazerReserva(hospedeIsCachorro);
+                Home.telaFazerReserva = new FazerReserva(hospedeIsCachorro);
             }
         }     
     }
@@ -99,8 +99,8 @@ public class EventosEditarCliente {
             }
 
             if (escolha != 2) {
-                FrameReservas.hospedeIsCachorro = hospedeIsCachorro;
-                Home.telaReservas = new FrameReservas(FrameClientes.clientes.get(FrameClientes.indiceCliente).getNumeroIdentificacao(), FrameClientes.clientes.get(FrameClientes.indiceCliente).getCustoCachorrosGatos());
+                Reservas.hospedeIsCachorro = hospedeIsCachorro;
+                Home.telaReservas = new Reservas(Clientes.clientes.get(Clientes.indiceCliente).getNumeroIdentificacao(), Clientes.clientes.get(Clientes.indiceCliente).getCustoCachorrosGatos());
             }
         }     
     }
