@@ -1,5 +1,7 @@
-package com.animal.hotel.view;
+package com.animal.hotel.view.telas;
 
+import com.animal.hotel.view.componentes.JButtonCliente;
+import com.animal.hotel.view.funcoes.EventosClientes.EventoBotoesClientes;
 import com.animal.hotel.model.Cliente;
 import com.animal.hotel.uteis.Arquivos;
 
@@ -40,7 +42,7 @@ public class FrameClientes extends JFrame {
     public int tamanhoCimaBaixo;
     public static int indiceCliente;
 
-    FrameClientes() {
+    public FrameClientes() {
         posicaoTela = Home.posicaoTela;
         telaWidth = Home.telaWidth;
         telaHeight = Home.telaHeight;
@@ -107,13 +109,13 @@ public class FrameClientes extends JFrame {
             public void componentShown(ComponentEvent arg0) {}
         });
 
-        BotaoEventosClientes eventoCliente = new BotaoEventosClientes();
+        EventoBotoesClientes eventoBotoesClientes = new EventoBotoesClientes();
 
         opcoesClientes = new ArrayList<>();
         for (int i = 0; i < clientes.size(); i++) {
             opcoesClientes.add(new JButtonCliente());
             opcoesClientes.get(i).setCliente(clientes.get(i));;
-            opcoesClientes.get(i).addActionListener(eventoCliente);
+            opcoesClientes.get(i).addActionListener(eventoBotoesClientes);
 
             JPanel dados = new JPanel();
             opcoesClientes.get(i).add(dados);
@@ -151,14 +153,6 @@ public class FrameClientes extends JFrame {
         }
         
         paineisClientes.get(4).add(voltar);
-    }
-
-    private static class BotaoEventosClientes implements ActionListener {
-        @Override
-        public void actionPerformed(ActionEvent arg0) {
-            indiceCliente = opcoesClientes.indexOf(arg0.getSource());
-            Home.telaEditarCliente = new FrameEditarCliente();
-        }
     }
 }
     

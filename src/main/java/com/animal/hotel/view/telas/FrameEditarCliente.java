@@ -1,10 +1,11 @@
-package com.animal.hotel.view;
+package com.animal.hotel.view.telas;
+
+import com.animal.hotel.view.funcoes.EventosEditarCliente.*;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JSeparator;
 
@@ -18,7 +19,7 @@ import java.awt.event.ComponentListener;
 import java.util.ArrayList;
 
 public class FrameEditarCliente extends JFrame {
-    static ArrayList<JPanel> paineisEditarCliente;
+    public static ArrayList<JPanel> paineisEditarCliente;
     static int larguraPainelEditCliente = 400;
     static int alturaPainelEditCliente = 300;
     public static int telaWidth;
@@ -26,9 +27,9 @@ public class FrameEditarCliente extends JFrame {
     public static Point posicaoTela;
     public int tamanhoLaterais;
     public int tamanhoCimaBaixo;
-    static JButton editNomeCliente, editTelefoneCliente, editEmailCliente, fazerReserva, verReservas;
+    public static JButton editNomeCliente, editTelefoneCliente, editEmailCliente, fazerReserva, verReservas;
 
-    FrameEditarCliente() {
+    public FrameEditarCliente() {
         posicaoTela = FrameClientes.posicaoTela;
         telaWidth = FrameClientes.telaWidth;
         telaHeight = FrameClientes.telaHeight;
@@ -98,12 +99,11 @@ public class FrameEditarCliente extends JFrame {
         paineisEditarCliente.get(0).add(fazerReserva = new JButton("Fazer reservas de hospedes"));
         paineisEditarCliente.get(0).add(verReservas = new JButton("Ver reservas do cliente"));
 
-        BotaoEventosEditarCliente eventoEditarCliente = new BotaoEventosEditarCliente();
-        editNomeCliente.addActionListener(eventoEditarCliente);
-        editTelefoneCliente.addActionListener(eventoEditarCliente);
-        editEmailCliente.addActionListener(eventoEditarCliente);
-        fazerReserva.addActionListener(eventoEditarCliente);
-        verReservas.addActionListener(eventoEditarCliente);
+        editNomeCliente.addActionListener(new EventoBotaoEditarNome());
+        editTelefoneCliente.addActionListener(new EventoBotaoEditarTelefone());
+        editEmailCliente.addActionListener(new EventoBotaoEditarEmail());
+        fazerReserva.addActionListener(new EventoBotaoFazerReserva());
+        verReservas.addActionListener(new EventoBotaoVerReserva());
 
         JButton voltar = new JButton("Voltar");
         voltar.addActionListener(new ActionListener() {
@@ -133,81 +133,5 @@ public class FrameEditarCliente extends JFrame {
         add(paineisEditarCliente.get(2), BorderLayout.EAST); 
         add(paineisEditarCliente.get(3), BorderLayout.NORTH); 
         add(paineisEditarCliente.get(4), BorderLayout.SOUTH);
-    }
-
-    
-    private static class BotaoEventosEditarCliente implements ActionListener {
-        @Override
-        public void actionPerformed(ActionEvent arg0) {
-            Object source = arg0.getSource();
-            String entrada;
-
-            if (source == editNomeCliente) {
-                entrada = JOptionPane.showInputDialog("Insira o nome do Cliente:");
-                
-                if (entrada != null && !entrada.equals("")) {
-                    editNomeCliente.setText("Nome do cliente: " + entrada);
-                    FrameClientes.clientes.get(FrameClientes.indiceCliente).setNome(entrada);
-                }
-            } else {
-                if (source == editTelefoneCliente) {
-                    entrada = JOptionPane.showInputDialog("Insira o número de telefone:");
-
-                    if (entrada != null && !entrada.equals("")) {
-                        editTelefoneCliente.setText("Número de telefone: " + entrada);
-                        FrameClientes.clientes.get(FrameClientes.indiceCliente).setNumeroTelefone(entrada);
-                    }
-                } else {
-                    if (source == editEmailCliente) {
-                        entrada = JOptionPane.showInputDialog("Insira o e-mail do cliente:");
-
-                        if (entrada != null && !entrada.equals("")) {
-                            editEmailCliente.setText("E-mail: " + entrada);
-                            FrameClientes.clientes.get(FrameClientes.indiceCliente).setEmail(entrada);
-                        }
-                    } else {
-                        String[] opcs = {"Cachorro", "  Gato  ", "Cancelar"};
-                        int escolha;
-                        boolean hospedeIsCachorro = false;
-
-                        if (source == fazerReserva) {
-                            escolha = JOptionPane.showOptionDialog(null, "Você quer fazer reserva de cachorro ou de gato?", null, 
-                                                                        JOptionPane.OK_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE,
-                                                                        null, opcs, null);
-    
-                            if (escolha == 0) {
-                                hospedeIsCachorro = true;
-                            } else {
-                                if (escolha == 1) {
-                                    hospedeIsCachorro = false;
-                                }
-                            }
-
-                            if (escolha != 2) {
-                                Home.telaFazerReserva = new FrameFazerReserva(hospedeIsCachorro);
-                            }
-
-                        } else {
-                            escolha = JOptionPane.showOptionDialog(null, "Você quer fazer reserva de cachorro ou de gato?", null, 
-                                                                        JOptionPane.OK_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE,
-                                                                        null, opcs, null);
-    
-                            if (escolha == 0) {
-                                hospedeIsCachorro = true;
-                            } else {
-                                if (escolha == 1) {
-                                    hospedeIsCachorro = false;
-                                }
-                            }
-
-                            if (escolha != 2) {
-                                FrameReservas.hospedeIsCachorro = hospedeIsCachorro;
-                                Home.telaReservas = new FrameReservas(FrameClientes.clientes.get(FrameClientes.indiceCliente).getNumeroIdentificacao(), FrameClientes.clientes.get(FrameClientes.indiceCliente).getCustoCachorrosGatos());
-                            }
-                        }
-                    }
-                }
-            }
-        }     
     }
 }

@@ -1,4 +1,7 @@
-package com.animal.hotel.view;
+package com.animal.hotel.view.telas;
+
+import com.animal.hotel.view.componentes.JButtonHospede;
+import com.animal.hotel.view.funcoes.EventosReservas.EventoBotaoReserva;
 
 import com.animal.hotel.model.Cachorro;
 import com.animal.hotel.model.Gato;
@@ -30,16 +33,16 @@ import com.google.gson.reflect.TypeToken;
 
 public class FrameReservas extends JFrame {
     static int larguraPainelHospedes = 400;
-    static boolean hospedeIsCachorro;
-    static List<Hospede> hospedes;
-    static ArrayList<JButtonHospede> opcoesHospedes;
+    public static boolean hospedeIsCachorro;
+    public static List<Hospede> hospedes;
+    public static ArrayList<JButtonHospede> opcoesHospedes;
     static ArrayList<JPanel> paineisHospedes;
     static int tamanhoLaterais;
     static int tamanhoCimaBaixo;
-    static int indiceHospede;
+    public static int indiceHospede;
     static float[] custoCachorrosGatos;
     
-    FrameReservas(String idResponsavel, float[] custoCachorrosGatos) {
+    public FrameReservas(String idResponsavel, float[] custoCachorrosGatos) {
         super();
         FrameReservas.custoCachorrosGatos = custoCachorrosGatos;
 
@@ -118,7 +121,7 @@ public class FrameReservas extends JFrame {
             public void componentShown(ComponentEvent arg0) {}
         });
 
-        BotaoEventosHospedes eventoHospede = new BotaoEventosHospedes();
+        EventoBotaoReserva eventoBotaoReserva = new EventoBotaoReserva();
 
         opcoesHospedes = new ArrayList<>();
         int contButHospe = -1;
@@ -127,7 +130,7 @@ public class FrameReservas extends JFrame {
             if ((Home.alterar && hospedes.get(i).getNumeroIdentificacaoResponsavel().equals(idResponsavel)) || !Home.alterar) {
                 contButHospe++;
                 opcoesHospedes.add(new JButtonHospede());
-                opcoesHospedes.get(contButHospe).addActionListener(eventoHospede);
+                opcoesHospedes.get(contButHospe).addActionListener(eventoBotaoReserva);
                 opcoesHospedes.get(contButHospe).setIndiceHospede(i);
                 opcoesHospedes.get(contButHospe).setIndiceButton(contButHospe);
 
@@ -194,18 +197,5 @@ public class FrameReservas extends JFrame {
         }
         
         paineisHospedes.get(4).add(voltar);
-    }
-    
-    private static class BotaoEventosHospedes implements ActionListener {
-        @Override
-        public void actionPerformed(ActionEvent arg0) {
-            indiceHospede = ((JButtonHospede) arg0.getSource()).getIndiceHospede();
-
-            if (Home.alterar) {
-                Home.telaEditarReserva = new FrameEditarReserva(((JButtonHospede) arg0.getSource()).getIndiceButton());
-            } else {
-                new DialogVerReserva();
-            }
-        }
     }
 }

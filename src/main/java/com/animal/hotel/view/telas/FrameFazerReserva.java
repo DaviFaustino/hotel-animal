@@ -1,4 +1,4 @@
-package com.animal.hotel.view;
+package com.animal.hotel.view.telas;
 
 import com.animal.hotel.model.Cachorro;
 import com.animal.hotel.model.Gato;
@@ -36,7 +36,7 @@ public class FrameFazerReserva extends JFrame {
     static ButtonGroup grupoSocia, grupoPassear, grupoFase;
     static HashMap<String, Float> opcoesRacoes;
 
-    FrameFazerReserva(boolean hospedeIsCachorro) {
+    public FrameFazerReserva(boolean hospedeIsCachorro) {
         super();
         FrameFazerReserva.hospedeIsCachorro = hospedeIsCachorro;
 

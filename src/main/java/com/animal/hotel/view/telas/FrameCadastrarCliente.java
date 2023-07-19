@@ -1,4 +1,4 @@
-package com.animal.hotel.view;
+package com.animal.hotel.view.telas;
 
 import com.animal.hotel.model.Cliente;
 import com.animal.hotel.uteis.Arquivos;
@@ -27,7 +27,7 @@ public class FrameCadastrarCliente extends JFrame {
     public static int telaHeight;
     public static Point posicaoTela;
 
-    FrameCadastrarCliente() {
+    public FrameCadastrarCliente() {
         posicaoTela = Home.posicaoTela;
         telaWidth = Home.telaWidth;
         telaHeight = Home.telaHeight;

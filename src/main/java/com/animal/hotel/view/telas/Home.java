@@ -1,15 +1,15 @@
-package com.animal.hotel.view;
+package com.animal.hotel.view.telas;
 
 import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+
+import com.animal.hotel.view.funcoes.EventosHome.*;
+
 import javax.swing.BoxLayout;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
 import java.awt.BorderLayout;
@@ -37,19 +37,19 @@ public class Home {
     static int tamanhoLaterais;
     static int tamanhoCimaBaixo;
     static JButton butClientes, butCadastrarCliente, butHospedes, butExit;
-    static JFrame telaPrincipal;
-    static FrameCadastrarCliente telaCadastrarCliente;
-    static FrameEditarReserva  telaEditarReserva;
-    static FrameFazerReserva telaFazerReserva;
-    static FrameClientes telaClientes;
-    static FrameEditarCliente telaEditarCliente;
-    static FrameReservas telaReservas;
+    public static JFrame telaPrincipal;
+    public static FrameCadastrarCliente telaCadastrarCliente;
+    public static FrameEditarReserva  telaEditarReserva;
+    public static FrameFazerReserva telaFazerReserva;
+    public static FrameClientes telaClientes;
+    public static FrameEditarCliente telaEditarCliente;
+    public static FrameReservas telaReservas;
     static ArrayList<JPanel> paineisPrincipal;
-    static int telaWidth = 700;
-    static int telaHeight = 500;
-    static Point posicaoTela;
-    static Font fontePadrao = new Font("padrao", Font.BOLD, 15);
-    static boolean alterar;
+    public static int telaWidth = 700;
+    public static int telaHeight = 500;
+    public static Point posicaoTela;
+    public static Font fontePadrao = new Font("padrao", Font.BOLD, 15);
+    public static boolean alterar;
     
 
     /*
@@ -118,12 +118,10 @@ public class Home {
         butHospedes.setSize(larguraPainelPrincipal, 30);
         butExit.setSize(larguraPainelPrincipal, 30);
 
-        BotaoEventosPrincipal eventoBotao = new BotaoEventosPrincipal();
-
-        butClientes.addActionListener(eventoBotao);
-        butCadastrarCliente.addActionListener(eventoBotao);
-        butHospedes.addActionListener(eventoBotao);
-        butExit.addActionListener(eventoBotao);
+        butClientes.addActionListener(new EventoButaoClientes());
+        butCadastrarCliente.addActionListener(new EventoButaoCadastrarClientes());
+        butHospedes.addActionListener(new EventoButaoHospedes());
+        butExit.addActionListener(new EventoButaoExit());
 
         telaPrincipal.add(paineisPrincipal.get(0), BorderLayout.CENTER);
         telaPrincipal.add(paineisPrincipal.get(1), BorderLayout.WEST);
@@ -134,45 +132,5 @@ public class Home {
         paineisPrincipal.get(0).add(butCadastrarCliente);
         paineisPrincipal.get(0).add(butHospedes);
         paineisPrincipal.get(4).add(butExit);
-    }
-    
-
-    private static class BotaoEventosPrincipal implements ActionListener {
-        @Override
-        public void actionPerformed(ActionEvent arg0) {
-            if (arg0.getSource() == butClientes) {
-                alterar = true;
-                telaClientes = new FrameClientes();
-            }
-            if (arg0.getSource() == butCadastrarCliente) {
-                telaCadastrarCliente = new FrameCadastrarCliente();
-            }
-            if (arg0.getSource() == butHospedes) {
-                alterar = false;
-
-                String[] opcs = {"Cachorros", "  Gatos  ", "Cancelar"};
-                int escolha;
-
-                escolha = JOptionPane.showOptionDialog(null, "Você quer ver cachorros ou gatos?", null, 
-                                                            JOptionPane.OK_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE,
-                                                            null, opcs, null);
-
-                if (escolha == 0) {
-                    FrameReservas.hospedeIsCachorro = true;
-                } else {
-                    if (escolha == 1) {
-                        FrameReservas.hospedeIsCachorro = false;
-                    }
-                }
-
-                if (escolha != 2) {
-                    telaReservas = new FrameReservas("0000", new float[2]);
-                    telaPrincipal.setVisible(false);
-                }
-            }
-            if (arg0.getSource() == butExit) {
-                telaPrincipal.dispose();
-            }
-        }
     }
 }

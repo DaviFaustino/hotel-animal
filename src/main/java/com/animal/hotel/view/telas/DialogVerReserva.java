@@ -1,4 +1,4 @@
-package com.animal.hotel.view;
+package com.animal.hotel.view.telas;
 
 import com.animal.hotel.model.Cachorro;
 import com.animal.hotel.model.Gato;
@@ -12,8 +12,7 @@ import javax.swing.JSeparator;
 
 public class DialogVerReserva extends JDialog {
     
-
-    DialogVerReserva() {
+    public DialogVerReserva() {
         setTitle("Dados da reserva");
         setSize(380, 300);
         setLocation(((int) Home.posicaoTela.getX() + Home.telaWidth / 2 - 200), ((int) Home.posicaoTela.getY() + Home.telaHeight / 2 - 150));
