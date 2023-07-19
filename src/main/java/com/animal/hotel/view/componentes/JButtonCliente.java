@@ -1,4 +1,4 @@
-package com.animal.hotel.view;
+package com.animal.hotel.view.componentes;
 
 import com.animal.hotel.model.Cliente;
 import javax.swing.JButton;

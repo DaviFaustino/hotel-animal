@@ -1,4 +1,4 @@
-package com.animal.hotel.view;
+package com.animal.hotel.view.componentes;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
@@ -11,7 +11,7 @@ public class JButtonHospede extends JButton {
     private JPanel dados;
     private JLabel labelIdResponsavel = new JLabel(), labelIdHospede = new JLabel(), labelNome = new JLabel(), labelCusto = new JLabel();
 
-    JButtonHospede() {
+    public JButtonHospede() {
         super();
         dados = new JPanel();
         add(dados);
