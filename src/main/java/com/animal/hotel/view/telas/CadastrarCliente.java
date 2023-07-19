@@ -1,28 +1,20 @@
 package com.animal.hotel.view.telas;
 
-import com.animal.hotel.model.Cliente;
-import com.animal.hotel.uteis.Arquivos;
-import com.animal.hotel.uteis.InputDados;
+import com.animal.hotel.view.funcoes.EventosCadastrarCliente.*;
 
-import java.io.IOException;
 import java.util.ArrayList;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.ComponentEvent;
-import java.awt.event.ComponentListener;
 import java.awt.Point;
 
 public class CadastrarCliente extends JFrame {
-    static JButton voltarCadCliente, salvarCadCliente;
-    static ArrayList<JLabel> labelsCadCliente;
-    static ArrayList<JTextField> entradasTextoCadCliente;
+    public static JButton voltarCadCliente, salvarCadCliente;
+    public static ArrayList<JLabel> labelsCadCliente;
+    public static ArrayList<JTextField> entradasTextoCadCliente;
     public static int telaWidth;
     public static int telaHeight;
     public static Point posicaoTela;
@@ -39,34 +31,7 @@ public class CadastrarCliente extends JFrame {
         setLayout(null);
 
 
-        addComponentListener(new ComponentListener() {
-            @Override
-            public void componentHidden(ComponentEvent arg0) {}
-
-            @Override
-            public void componentMoved(ComponentEvent arg0) {
-                posicaoTela = getLocation();
-            }
-
-            @Override
-            public void componentResized(ComponentEvent arg0) {
-                int centroX = getWidth() / 2;
-                int centroY = getHeight() / 2;
-                labelsCadCliente.get(0).setBounds(centroX - 220, centroY - 80, 200, 30);
-                labelsCadCliente.get(1).setBounds(centroX - 250, centroY - 50, 200, 30);
-                labelsCadCliente.get(2).setBounds(centroX - 220, centroY - 20, 200, 30);
-                entradasTextoCadCliente.get(0).setBounds(centroX - 80, centroY - 76, 350, 20);
-                entradasTextoCadCliente.get(1).setBounds(centroX - 80, centroY - 46, 350, 20);
-                entradasTextoCadCliente.get(2).setBounds(centroX - 80, centroY - 16, 350, 20);
-                voltarCadCliente.setBounds(centroX + 70, centroY + 100, 100, 30);
-                salvarCadCliente.setBounds(centroX - 70, centroY + 100, 100, 30);
-                telaWidth = getWidth();
-                telaHeight = getHeight();
-            }
-
-            @Override
-            public void componentShown(ComponentEvent arg0) {}
-        });
+        addComponentListener(new EventosTela());
 
         
         labelsCadCliente = new ArrayList<>();
@@ -85,45 +50,10 @@ public class CadastrarCliente extends JFrame {
 
 
         voltarCadCliente = new JButton("Volta");
-        voltarCadCliente.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent arg0) {
-                Home.telaPrincipal.setLocation(posicaoTela);
-                Home.telaPrincipal.setSize(telaWidth, telaHeight);
-                Home.telaPrincipal.setVisible(true);
-                dispose();
-            }
-        });
+        voltarCadCliente.addActionListener(new EventoBotaoVoltar());
 
         salvarCadCliente = new JButton("Salvar");
-        salvarCadCliente.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent arg0) {
-                Cliente cliente = new Cliente();
-                cliente.setNome(entradasTextoCadCliente.get(0).getText());
-                cliente.setNumeroTelefone(entradasTextoCadCliente.get(1).getText());
-                cliente.setEmail(entradasTextoCadCliente.get(2).getText());
-
-                String[] opcs = {"Sim", "Não"};
-                int escolha = JOptionPane.showOptionDialog(null, "Você realmente deseja realizar o cadastro?", null, 
-                                                           JOptionPane.OK_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE,
-                                                           null, opcs, null);
-
-                if (escolha == 0) {
-                    cliente.setNumeroIdentificacao(InputDados.numeroIdentificacao(false));
-
-                    try {
-                        Arquivos.addAosArquivos(cliente);
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                    
-                    for (JTextField entrada: entradasTextoCadCliente) {
-                        entrada.setText("");
-                    }
-                }
-            }
-        });
+        salvarCadCliente.addActionListener(new EventoBotaoSalvar());
 
 
         add(labelsCadCliente.get(0));
