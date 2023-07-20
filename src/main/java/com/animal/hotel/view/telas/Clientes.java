@@ -1,7 +1,7 @@
 package com.animal.hotel.view.telas;
 
 import com.animal.hotel.view.componentes.JButtonCliente;
-import com.animal.hotel.view.funcoes.EventosClientes.EventoBotoesClientes;
+import com.animal.hotel.view.funcoes.EventosClientes.*;
 import com.animal.hotel.model.Cliente;
 import com.animal.hotel.uteis.Arquivos;
 
@@ -31,15 +31,15 @@ import java.awt.Dimension;
 import java.awt.Point;
 
 public class Clientes extends JFrame {
-    public int larguraPainelCliente = 400;
+    public static int larguraPainelCliente = 400;
     public static List<Cliente> clientes;
     public static ArrayList<JButtonCliente> opcoesClientes;
-    public ArrayList<JPanel> paineisClientes;
+    public static ArrayList<JPanel> paineisClientes;
     public static int telaWidth;
     public static int telaHeight;
     public static Point posicaoTela;
-    public int tamanhoLaterais;
-    public int tamanhoCimaBaixo;
+    public static int tamanhoLaterais;
+    public static int tamanhoCimaBaixo;
     public static int indiceCliente;
 
     public Clientes() {
@@ -87,27 +87,7 @@ public class Clientes extends JFrame {
         paineisClientes.get(3).setPreferredSize(new Dimension(tamanhoCimaBaixo, tamanhoCimaBaixo));
         paineisClientes.get(4).setPreferredSize(new Dimension(tamanhoCimaBaixo, tamanhoCimaBaixo));
 
-        addComponentListener(new ComponentListener() {
-            @Override
-            public void componentHidden(ComponentEvent arg0) {}
-
-            @Override
-            public void componentMoved(ComponentEvent arg0) {
-                posicaoTela = getLocation();
-            }
-
-            @Override
-            public void componentResized(ComponentEvent arg0) {
-                tamanhoLaterais = (getWidth() - larguraPainelCliente) / 2;
-                paineisClientes.get(1).setPreferredSize(new Dimension(tamanhoLaterais, tamanhoLaterais));
-                paineisClientes.get(2).setPreferredSize(new Dimension(tamanhoLaterais, tamanhoLaterais));
-                telaWidth = getWidth();
-                telaHeight = getHeight();
-            }
-
-            @Override
-            public void componentShown(ComponentEvent arg0) {}
-        });
+        addComponentListener(new EventosTela());
 
         EventoBotoesClientes eventoBotoesClientes = new EventoBotoesClientes();
 
@@ -126,21 +106,7 @@ public class Clientes extends JFrame {
         }
 
         JButton voltar = new JButton("Voltar");
-        voltar.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent arg0) {
-                try {
-                    Arquivos.salvar(clientes, 2);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-
-                Home.telaPrincipal.setLocation(posicaoTela);
-                Home.telaPrincipal.setSize(telaWidth, telaHeight);
-                Home.telaPrincipal.setVisible(true);
-                dispose();
-            }
-        });
+        voltar.addActionListener(new EventoBotaoVoltar());
 
         add(new JScrollPane(paineisClientes.get(0)), BorderLayout.CENTER); 
         add(paineisClientes.get(1), BorderLayout.WEST); 
