@@ -4,8 +4,11 @@ import com.animal.hotel.view.telas.EditarReserva;
 import com.animal.hotel.view.telas.Reservas;
 import com.animal.hotel.view.telas.Home;
 
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ComponentEvent;
+import java.awt.event.ComponentListener;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
@@ -13,6 +16,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Scanner;
 
+import javax.swing.JFrame;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -28,6 +32,32 @@ import com.animal.hotel.model.Gato;
 import com.animal.hotel.model.Hospede;
 
 public class EventosEditarReserva {
+    public static class EventosTela implements ComponentListener {
+        @Override
+        public void componentHidden(ComponentEvent arg0) {}
+
+        @Override
+        public void componentMoved(ComponentEvent arg0) {
+            Home.posicaoTela = ((JFrame) arg0.getSource()).getLocation();
+        }
+
+        @Override
+        public void componentResized(ComponentEvent arg0) {
+            JFrame telaComponent = (JFrame) arg0.getSource();
+            EditarReserva.tamanhoLaterais = (telaComponent.getWidth() - EditarReserva.larguraPainelEditHospede) / 2;
+            EditarReserva.tamanhoCimaBaixo = (telaComponent.getHeight() - EditarReserva.alturaPainelEditHospede) / 2;
+            EditarReserva.paineisEditarReserva.get(1).setPreferredSize(new Dimension(EditarReserva.tamanhoLaterais, EditarReserva.tamanhoLaterais));
+            EditarReserva.paineisEditarReserva.get(2).setPreferredSize(new Dimension(EditarReserva.tamanhoLaterais, EditarReserva.tamanhoLaterais));
+            EditarReserva.paineisEditarReserva.get(3).setPreferredSize(new Dimension(EditarReserva.tamanhoCimaBaixo, EditarReserva.tamanhoCimaBaixo));
+            EditarReserva.paineisEditarReserva.get(4).setPreferredSize(new Dimension(EditarReserva.tamanhoCimaBaixo, EditarReserva.tamanhoCimaBaixo));
+            Home.telaWidth = telaComponent.getWidth();
+            Home.telaHeight = telaComponent.getHeight();
+        }
+
+        @Override
+        public void componentShown(ComponentEvent arg0) {}
+    }
+
     public static class EventoBotaoEditNomeHospede implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent arg0) {
@@ -343,6 +373,24 @@ public class EventosEditarReserva {
             EditarReserva.editQuantCompanheirosGa.setText("Quantidade de companheiros: " + escolhaC);
 
             atualizaCusto();
+        }
+    }
+
+    public static class EventoBotaoVoltar implements ActionListener {
+        @Override
+            public void actionPerformed(ActionEvent arg0) {
+            Home.telaReservas.setLocation(Home.posicaoTela);
+            Home.telaReservas.setSize(Home.telaWidth, Home.telaHeight);
+            Home.telaReservas.setVisible(true);
+
+            if (Reservas.hospedeIsCachorro) {
+                Reservas.opcoesHospedes.get(EditarReserva.indiceButton).getLabelNome().setText("Nome do cachorro: " + Reservas.hospedes.get(Reservas.indiceHospede).getNome());
+            } else {
+                Reservas.opcoesHospedes.get(EditarReserva.indiceButton).getLabelNome().setText("Nome do gato: " + Reservas.hospedes.get(Reservas.indiceHospede).getNome());
+            }
+            Reservas.opcoesHospedes.get(EditarReserva.indiceButton).getLabelCusto().setText("Custo da hospedagem: " + Reservas.hospedes.get(Reservas.indiceHospede).getCustoHospede());
+
+            Home.telaEditarReserva.dispose();
         }
     }
 

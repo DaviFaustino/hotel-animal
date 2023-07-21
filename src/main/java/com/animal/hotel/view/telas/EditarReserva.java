@@ -26,11 +26,11 @@ import javax.swing.JSeparator;
 import javax.swing.JTextField;
 
 public class EditarReserva extends JFrame {
-    static ArrayList<JPanel> paineisEditarReserva;
-    static int larguraPainelEditHospede = 400;
-    static int alturaPainelEditHospede = 370;
-    public int tamanhoLaterais;
-    public int tamanhoCimaBaixo;
+    public static ArrayList<JPanel> paineisEditarReserva;
+    public static int larguraPainelEditHospede = 400;
+    public static int alturaPainelEditHospede = 370;
+    public static int tamanhoLaterais;
+    public static int tamanhoCimaBaixo;
     public static JButton editNomeHospede, editFaseDaVida, editQuantRacaoGramas, editNomeRacao, editPodeSocializarComOutros, 
                     edDataCheckIn, edDataCheckOut, editPodePassear, editQuantCompanheirosGa;
     public static JLabel LabelGastoRacao, LabelCustoHospede;
@@ -39,7 +39,7 @@ public class EditarReserva extends JFrame {
     public static JComboBox menuRacoes;
     public static ButtonGroup grupoSocia, grupoPassear;
     public static JRadioButton simPassear, naoPassear, simSocia, naoSocia;
-    static int indiceButton;
+    public static int indiceButton;
 
     public EditarReserva(int indiceButton) {
         super();
@@ -73,31 +73,7 @@ public class EditarReserva extends JFrame {
         paineisEditarReserva.get(3).setPreferredSize(new Dimension(tamanhoCimaBaixo, tamanhoCimaBaixo));
         paineisEditarReserva.get(4).setPreferredSize(new Dimension(tamanhoCimaBaixo, tamanhoCimaBaixo));
 
-        addComponentListener(new ComponentListener() {
-            @Override
-            public void componentHidden(ComponentEvent arg0) {}
-
-            @Override
-            public void componentMoved(ComponentEvent arg0) {
-                Home.posicaoTela = getLocation();
-            }
-
-            @Override
-            public void componentResized(ComponentEvent arg0) {
-                tamanhoLaterais = (getWidth() - larguraPainelEditHospede) / 2;
-                tamanhoCimaBaixo = (getHeight() - alturaPainelEditHospede) / 2;
-                paineisEditarReserva.get(1).setPreferredSize(new Dimension(tamanhoLaterais, tamanhoLaterais));
-                paineisEditarReserva.get(2).setPreferredSize(new Dimension(tamanhoLaterais, tamanhoLaterais));
-                paineisEditarReserva.get(3).setPreferredSize(new Dimension(tamanhoCimaBaixo, tamanhoCimaBaixo));
-                paineisEditarReserva.get(4).setPreferredSize(new Dimension(tamanhoCimaBaixo, tamanhoCimaBaixo));
-                Home.telaWidth = getWidth();
-                Home.telaHeight = getHeight();
-            }
-
-            @Override
-            public void componentShown(ComponentEvent arg0) {}
-        });
-
+        addComponentListener(new EventosTela());
 
         paineisEditarReserva.get(0).add(new JLabel("Escolha um dado para editar"));
         paineisEditarReserva.get(0).add(new JSeparator(JSeparator.HORIZONTAL));
@@ -143,23 +119,7 @@ public class EditarReserva extends JFrame {
         
 
         JButton voltar = new JButton("Voltar");
-        voltar.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent arg0) {
-                Home.telaReservas.setLocation(Home.posicaoTela);
-                Home.telaReservas.setSize(Home.telaWidth, Home.telaHeight);
-                Home.telaReservas.setVisible(true);
-
-                if (Reservas.hospedeIsCachorro) {
-                    Reservas.opcoesHospedes.get(EditarReserva.indiceButton).getLabelNome().setText("Nome do cachorro: " + Reservas.hospedes.get(Reservas.indiceHospede).getNome());
-                } else {
-                    Reservas.opcoesHospedes.get(EditarReserva.indiceButton).getLabelNome().setText("Nome do gato: " + Reservas.hospedes.get(Reservas.indiceHospede).getNome());
-                }
-                Reservas.opcoesHospedes.get(EditarReserva.indiceButton).getLabelCusto().setText("Custo da hospedagem: " + Reservas.hospedes.get(Reservas.indiceHospede).getCustoHospede());
-
-                dispose();
-            }
-        });
+        voltar.addActionListener(new EventoBotaoVoltar());
 
         paineisEditarReserva.get(4).add(voltar);
 
