@@ -10,8 +10,6 @@ import com.animal.hotel.view.funcoes.EventosHome.*;
 
 import javax.swing.BoxLayout;
 
-import java.awt.event.ComponentEvent;
-import java.awt.event.ComponentListener;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -32,10 +30,10 @@ import java.awt.Point;
 * prestado for finalizado.
 * */
 public class Home {
-    static int larguraPainelPrincipal = 170;
-    static int alturaPainelPrincipal = 148;
-    static int tamanhoLaterais;
-    static int tamanhoCimaBaixo;
+    public static int larguraPainelPrincipal = 170;
+    public static int alturaPainelPrincipal = 148;
+    public static int tamanhoLaterais;
+    public static int tamanhoCimaBaixo;
     static JButton butClientes, butCadastrarCliente, butHospedes, butExit;
     public static JFrame telaPrincipal;
     public static CadastrarCliente telaCadastrarCliente;
@@ -44,7 +42,7 @@ public class Home {
     public static Clientes telaClientes;
     public static EditarCliente telaEditarCliente;
     public static Reservas telaReservas;
-    static ArrayList<JPanel> paineisPrincipal;
+    public static ArrayList<JPanel> paineisPrincipal;
     public static int telaWidth = 700;
     public static int telaHeight = 500;
     public static Point posicaoTela;
@@ -83,30 +81,7 @@ public class Home {
         paineisPrincipal.get(3).setPreferredSize(new Dimension(tamanhoCimaBaixo, tamanhoCimaBaixo));
         paineisPrincipal.get(4).setPreferredSize(new Dimension(tamanhoCimaBaixo, tamanhoCimaBaixo));
 
-        telaPrincipal.addComponentListener(new ComponentListener() {
-            @Override
-            public void componentHidden(ComponentEvent arg0) {}
-
-            @Override
-            public void componentMoved(ComponentEvent arg0) {
-                posicaoTela = telaPrincipal.getLocation();
-            }
-
-            @Override
-            public void componentResized(ComponentEvent arg0) {
-                tamanhoLaterais = (telaPrincipal.getWidth() - larguraPainelPrincipal) / 2;
-                tamanhoCimaBaixo = (telaPrincipal.getHeight() - alturaPainelPrincipal) / 2;
-                paineisPrincipal.get(1).setPreferredSize(new Dimension(tamanhoLaterais, tamanhoLaterais));
-                paineisPrincipal.get(2).setPreferredSize(new Dimension(tamanhoLaterais, tamanhoLaterais));
-                paineisPrincipal.get(3).setPreferredSize(new Dimension(tamanhoCimaBaixo, tamanhoCimaBaixo));
-                paineisPrincipal.get(4).setPreferredSize(new Dimension(tamanhoCimaBaixo, tamanhoCimaBaixo));
-                telaWidth = telaPrincipal.getWidth();
-                telaHeight = telaPrincipal.getHeight();
-            }
-
-            @Override
-            public void componentShown(ComponentEvent arg0) {}
-        });
+        telaPrincipal.addComponentListener(new EventosTela());
 
         butClientes = new JButton("Clientes");
         butCadastrarCliente = new JButton("Cadastrar Cliente");
