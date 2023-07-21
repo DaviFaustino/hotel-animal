@@ -3,7 +3,6 @@ package com.animal.hotel.view.telas;
 import com.animal.hotel.view.componentes.JButtonCliente;
 import com.animal.hotel.view.funcoes.EventosClientes.*;
 import com.animal.hotel.model.Cliente;
-import com.animal.hotel.uteis.Arquivos;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -22,10 +21,6 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JButton;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.ComponentEvent;
-import java.awt.event.ComponentListener;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Point;

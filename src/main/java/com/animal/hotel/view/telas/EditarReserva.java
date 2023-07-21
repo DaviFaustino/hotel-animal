@@ -6,10 +6,6 @@ import com.animal.hotel.view.funcoes.EventosEditarReserva.*;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.ComponentEvent;
-import java.awt.event.ComponentListener;
 import java.util.ArrayList;
 import java.util.Arrays;
 
