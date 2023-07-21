@@ -12,21 +12,17 @@ import javax.swing.JSeparator;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Point;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.ComponentEvent;
-import java.awt.event.ComponentListener;
 import java.util.ArrayList;
 
 public class EditarCliente extends JFrame {
     public static ArrayList<JPanel> paineisEditarCliente;
-    static int larguraPainelEditCliente = 400;
-    static int alturaPainelEditCliente = 300;
+    public static int larguraPainelEditCliente = 400;
+    public static int alturaPainelEditCliente = 300;
     public static int telaWidth;
     public static int telaHeight;
     public static Point posicaoTela;
-    public int tamanhoLaterais;
-    public int tamanhoCimaBaixo;
+    public static int tamanhoLaterais;
+    public static int tamanhoCimaBaixo;
     public static JButton editNomeCliente, editTelefoneCliente, editEmailCliente, fazerReserva, verReservas;
 
     public EditarCliente() {
@@ -58,31 +54,7 @@ public class EditarCliente extends JFrame {
         paineisEditarCliente.get(3).setPreferredSize(new Dimension(tamanhoCimaBaixo, tamanhoCimaBaixo));
         paineisEditarCliente.get(4).setPreferredSize(new Dimension(tamanhoCimaBaixo, tamanhoCimaBaixo));
 
-        addComponentListener(new ComponentListener() {
-            @Override
-            public void componentHidden(ComponentEvent arg0) {}
-
-            @Override
-            public void componentMoved(ComponentEvent arg0) {
-                posicaoTela = getLocation();
-            }
-
-            @Override
-            public void componentResized(ComponentEvent arg0) {
-                tamanhoLaterais = (getWidth() - larguraPainelEditCliente) / 2;
-                tamanhoCimaBaixo = (getHeight() - alturaPainelEditCliente) / 2;
-                paineisEditarCliente.get(1).setPreferredSize(new Dimension(tamanhoLaterais, tamanhoLaterais));
-                paineisEditarCliente.get(2).setPreferredSize(new Dimension(tamanhoLaterais, tamanhoLaterais));
-                paineisEditarCliente.get(3).setPreferredSize(new Dimension(tamanhoCimaBaixo, tamanhoCimaBaixo));
-                paineisEditarCliente.get(4).setPreferredSize(new Dimension(tamanhoCimaBaixo, tamanhoCimaBaixo));
-                telaWidth = getWidth();
-                telaHeight = getHeight();
-            }
-
-            @Override
-            public void componentShown(ComponentEvent arg0) {}
-        });
-
+        addComponentListener(new EventosTela());
 
         paineisEditarCliente.get(0).add(new JLabel("Escolha um dado para editar"));
         paineisEditarCliente.get(0).add(new JSeparator(JSeparator.HORIZONTAL));
@@ -106,25 +78,7 @@ public class EditarCliente extends JFrame {
         verReservas.addActionListener(new EventoBotaoVerReserva());
 
         JButton voltar = new JButton("Voltar");
-        voltar.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent arg0) {
-                Home.telaClientes.setLocation(posicaoTela);
-                Home.telaClientes.setSize(telaWidth, telaHeight);
-
-                JPanel dados = new JPanel();
-                dados.setLayout(new BoxLayout(dados, BoxLayout.Y_AXIS));
-                dados.add(new JLabel("Id do cliente: " + Clientes.clientes.get(Clientes.indiceCliente).getNumeroIdentificacao()));
-                dados.add(new JLabel("Nome do cliente: " + Clientes.clientes.get(Clientes.indiceCliente).getNome()));
-                dados.add(new JLabel("Debito do cliente: " + String.valueOf(Clientes.clientes.get(Clientes.indiceCliente).getCustoCachorrosGatos()[0] + Clientes.clientes.get(Clientes.indiceCliente).getCustoCachorrosGatos()[1])));
-                
-                Clientes.opcoesClientes.get(Clientes.indiceCliente).remove(0);
-                Clientes.opcoesClientes.get(Clientes.indiceCliente).add(dados);
-
-                Home.telaClientes.setVisible(true);
-                dispose();
-            }
-        });
+        voltar.addActionListener(new EventoBotaoVoltar());
 
         paineisEditarCliente.get(4).add(voltar);
 
