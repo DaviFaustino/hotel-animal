@@ -1,18 +1,9 @@
 package com.animal.hotel.view.telas;
 
-import com.animal.hotel.model.Cachorro;
-import com.animal.hotel.model.Gato;
-import com.animal.hotel.model.Hospede;
-import com.animal.hotel.uteis.Arquivos;
-import com.animal.hotel.uteis.InputDados;
+import com.animal.hotel.view.funcoes.EventosFazerReserva.*;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.ComponentEvent;
-import java.awt.event.ComponentListener;
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
@@ -22,19 +13,18 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
 public class FazerReserva extends JFrame {
-    static ArrayList<JLabel> labelsFazerReserva;
-    static boolean hospedeIsCachorro;
-    static JRadioButton filhote, adulto, idoso, simPassear, naoPassear, simSocia, naoSocia;
-    static JComboBox menuRacoes, menuQuantCompG;
-    static ArrayList<JTextField> entradasTextoReservaHospede;
-    static JButton voltarReservaHospede, salvarReservaHospede;
+    public static ArrayList<JLabel> labelsFazerReserva;
+    public static boolean hospedeIsCachorro;
+    public static JRadioButton filhote, adulto, idoso, simPassear, naoPassear, simSocia, naoSocia;
+    public static JComboBox menuRacoes, menuQuantCompG;
+    public static ArrayList<JTextField> entradasTextoReservaHospede;
+    public static JButton voltarReservaHospede, salvarReservaHospede;
     static ButtonGroup grupoSocia, grupoPassear, grupoFase;
-    static HashMap<String, Float> opcoesRacoes;
+    public static HashMap<String, Float> opcoesRacoes;
 
     public FazerReserva(boolean hospedeIsCachorro) {
         super();
@@ -46,63 +36,7 @@ public class FazerReserva extends JFrame {
         setLocation(Home.posicaoTela);
         setLayout(null);
 
-        addComponentListener(new ComponentListener() {
-            @Override
-            public void componentHidden(ComponentEvent arg0) {
-                // TODO Auto-generated method stub
-                
-            }
-
-            @Override
-            public void componentMoved(ComponentEvent arg0) {
-                Home.posicaoTela = getLocation();
-            }
-
-            @Override
-            public void componentResized(ComponentEvent arg0) {
-                int centroX = getWidth() / 2;
-                int centroY = getHeight() / 2;
-                labelsFazerReserva.get(0).setBounds(centroX - 120, centroY - 200, 200, 30);
-                labelsFazerReserva.get(1).setBounds(centroX - 82, centroY - 165, 200, 30);
-                labelsFazerReserva.get(2).setBounds(centroX - 124, centroY - 130, 200, 30);
-                labelsFazerReserva.get(3).setBounds(centroX - 164, centroY - 95, 250, 30);
-                labelsFazerReserva.get(4).setBounds(centroX - 113, centroY - 60, 200, 30);
-                labelsFazerReserva.get(5).setBounds(centroX - 122, centroY - 25, 200, 30);
-                labelsFazerReserva.get(6).setBounds(centroX - 250, centroY + 10, 300, 30);
-                if (FazerReserva.hospedeIsCachorro) {
-                    labelsFazerReserva.get(7).setBounds(centroX - 137, centroY + 45, 200, 30);
-                    simPassear.setBounds(centroX + 85, centroY + 45, 70, 25);
-                    naoPassear.setBounds(centroX + 15, centroY + 45, 70, 25);
-                } else {
-                    labelsFazerReserva.get(7).setBounds(centroX - 260, centroY + 45, 300, 30);
-                    menuQuantCompG.setBounds(centroX + 15, centroY + 45, 50, 25);
-                }
-                entradasTextoReservaHospede.get(0).setBounds(centroX + 15, centroY - 200, 300, 25);
-                filhote.setBounds(centroX + 15, centroY - 165, 80, 25);
-                adulto.setBounds(centroX + 95, centroY - 165, 80, 25);
-                idoso.setBounds(centroX + 175, centroY - 165, 80, 25);
-                menuRacoes.setBounds(centroX + 15, centroY - 130, 150, 25);
-                entradasTextoReservaHospede.get(1).setBounds(centroX + 15, centroY - 95, 100, 25);
-                entradasTextoReservaHospede.get(2).setBounds(centroX + 15, centroY - 60, 25, 25);
-                entradasTextoReservaHospede.get(3).setBounds(centroX + 40, centroY - 60, 25, 25);
-                entradasTextoReservaHospede.get(4).setBounds(centroX + 65, centroY - 60, 50, 25);
-                entradasTextoReservaHospede.get(5).setBounds(centroX + 15, centroY - 25, 25, 25);
-                entradasTextoReservaHospede.get(6).setBounds(centroX + 40, centroY - 25, 25, 25);
-                entradasTextoReservaHospede.get(7).setBounds(centroX + 65, centroY - 25, 50, 25);
-                simSocia.setBounds(centroX + 85, centroY + 10, 70, 25);
-                naoSocia.setBounds(centroX + 15, centroY + 10, 70, 25);
-                voltarReservaHospede.setBounds(centroX - 200, centroY + 100, 100, 30);
-                salvarReservaHospede.setBounds(centroX + 50, centroY + 100, 100, 30);
-            }
-
-            @Override
-            public void componentShown(ComponentEvent arg0) {
-                // TODO Auto-generated method stub
-                
-            }
-        });
-
-
+        addComponentListener(new EventosTela());
 
         labelsFazerReserva = new ArrayList<>();
         labelsFazerReserva.add(new JLabel("Nome do hospede"));
@@ -173,101 +107,10 @@ public class FazerReserva extends JFrame {
         menuQuantCompG = new JComboBox<>(quant);
 
         voltarReservaHospede = new JButton("Volta");
-        voltarReservaHospede.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent arg0) {
-                Home.telaEditarCliente.setLocation(Home.posicaoTela);
-                Home.telaEditarCliente.setSize(Home.telaWidth, Home.telaHeight);
-                Home.telaEditarCliente.setVisible(true);
-                dispose();
-            }
-        });
+        voltarReservaHospede.addActionListener(new EventoBotaoVoltar());
 
         salvarReservaHospede = new JButton("Salvar");
-        salvarReservaHospede.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent arg0) {
-                
-                Hospede hospede;
-                if (FazerReserva.hospedeIsCachorro) {
-                    hospede = new Cachorro();
-                } else {
-                    hospede = new Gato();
-                }
-
-                hospede.setNumeroIdentificacaoResponsavel(Clientes.clientes.get(Clientes.indiceCliente).getNumeroIdentificacao());
-                hospede.setNome(entradasTextoReservaHospede.get(0).getText());
-                if (filhote.isSelected()) {
-                    hospede.setFaseDaVida("Filhote");
-                } else {
-                    if (adulto.isSelected()) {
-                        hospede.setFaseDaVida("Adulto");
-                    } else {
-                        hospede.setFaseDaVida("Idoso");
-                    }
-                }
-                hospede.setPrecoRacaoKilo(opcoesRacoes.get((String) menuRacoes.getSelectedItem()));
-                hospede.setNomeRacao((String) menuRacoes.getSelectedItem());
-                hospede.setQuantRacaoGramas(Integer.parseInt(entradasTextoReservaHospede.get(1).getText()));
-                for (int i = 0; i < 3; i++) {
-                    hospede.getDataCheckIn()[i] = entradasTextoReservaHospede.get(i + 2).getText();
-                    hospede.getDataCheckOut()[i] = entradasTextoReservaHospede.get(i + 5).getText();
-                }
-                if (simSocia.isSelected()) {
-                    hospede.setPodeSocializarComOutros(true);
-                } else {
-                    hospede.setPodeSocializarComOutros(false);
-                }
-
-                if (FazerReserva.hospedeIsCachorro) {
-                    Cachorro cachorro = (Cachorro) hospede;
-
-                    if (simPassear.isSelected()) {
-                        cachorro.setPodePassear(true);
-                    } else {
-                        cachorro.setPodePassear(false);
-                    }
-                    
-                    String[] opcs = {"Sim", "Não"};
-                    int escolha = JOptionPane.showOptionDialog(null, "O custo é de "+ cachorro.calculaCusto() +". Você realmente deseja fazer a reserva?", null, 
-                                                            JOptionPane.OK_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE,
-                                                            null, opcs, null);
-
-                    if (escolha == 0) {
-                        cachorro.setNumeroIdentificacao(InputDados.numeroIdentificacao(true));
-
-                        try {
-                            Arquivos.addAosArquivos(cachorro);
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-
-                        voltarReservaHospede.doClick();
-                    }
-                } else {
-                    Gato gato = (Gato) hospede;
-
-                    gato.setQuantCompanheirosGatil(Integer.parseInt((String) menuQuantCompG.getSelectedItem()));
-
-                    String[] opcs = {"Sim", "Não"};
-                    int escolha = JOptionPane.showOptionDialog(null, "O custo é de "+ gato.calculaCusto() +". Você realmente deseja fazer a reserva?", null, 
-                                                            JOptionPane.OK_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE,
-                                                            null, opcs, null);
-
-                    if (escolha == 0) {
-                        gato.setNumeroIdentificacao(InputDados.numeroIdentificacao(true));
-
-                        try {
-                            Arquivos.addAosArquivos(gato);
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-
-                        voltarReservaHospede.doClick();
-                    }
-                }
-            }
-        });
+        salvarReservaHospede.addActionListener(new EventoBotaoSalvar());
 
 
         for (JLabel label: labelsFazerReserva) {
