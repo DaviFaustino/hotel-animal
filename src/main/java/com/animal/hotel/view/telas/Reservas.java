@@ -1,19 +1,14 @@
 package com.animal.hotel.view.telas;
 
 import com.animal.hotel.view.componentes.JButtonHospede;
-import com.animal.hotel.view.funcoes.EventosReservas.EventoBotaoReserva;
+import com.animal.hotel.view.funcoes.EventosReservas.*;
 
 import com.animal.hotel.model.Cachorro;
 import com.animal.hotel.model.Gato;
 import com.animal.hotel.model.Hospede;
-import com.animal.hotel.uteis.Arquivos;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.ComponentEvent;
-import java.awt.event.ComponentListener;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -24,7 +19,6 @@ import java.util.List;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
@@ -32,13 +26,13 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 public class Reservas extends JFrame {
-    static int larguraPainelHospedes = 400;
+    public static int larguraPainelHospedes = 400;
     public static boolean hospedeIsCachorro;
     public static List<Hospede> hospedes;
     public static ArrayList<JButtonHospede> opcoesHospedes;
-    static ArrayList<JPanel> paineisHospedes;
-    static int tamanhoLaterais;
-    static int tamanhoCimaBaixo;
+    public static ArrayList<JPanel> paineisHospedes;
+    public static int tamanhoLaterais;
+    public static int tamanhoCimaBaixo;
     public static int indiceHospede;
     static float[] custoCachorrosGatos;
     
@@ -99,27 +93,7 @@ public class Reservas extends JFrame {
         paineisHospedes.get(3).setPreferredSize(new Dimension(tamanhoCimaBaixo, tamanhoCimaBaixo));
         paineisHospedes.get(4).setPreferredSize(new Dimension(tamanhoCimaBaixo, tamanhoCimaBaixo));
 
-        addComponentListener(new ComponentListener() {
-            @Override
-            public void componentHidden(ComponentEvent arg0) {}
-
-            @Override
-            public void componentMoved(ComponentEvent arg0) {
-                Home.posicaoTela = getLocation();
-            }
-
-            @Override
-            public void componentResized(ComponentEvent arg0) {
-                tamanhoLaterais = (getWidth() - larguraPainelHospedes) / 2;
-                paineisHospedes.get(1).setPreferredSize(new Dimension(tamanhoLaterais, tamanhoLaterais));
-                paineisHospedes.get(2).setPreferredSize(new Dimension(tamanhoLaterais, tamanhoLaterais));
-                Home.telaWidth = getWidth();
-                Home.telaHeight = getHeight();
-            }
-
-            @Override
-            public void componentShown(ComponentEvent arg0) {}
-        });
+        addComponentListener(new EventosTela());
 
         EventoBotaoReserva eventoBotaoReserva = new EventoBotaoReserva();
 
@@ -149,42 +123,7 @@ public class Reservas extends JFrame {
         }
 
         JButton voltar = new JButton("Voltar");
-        voltar.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent arg0) {
-                if (Home.alterar) {
-                    try {
-                        float somaCustos = 0f;
-                        for (int i = 0; i < hospedes.size(); i++) {
-                            if (hospedes.get(i).getNumeroIdentificacaoResponsavel().equals(Clientes.clientes.get(Clientes.indiceCliente).getNumeroIdentificacao())) {
-                                somaCustos += hospedes.get(i).getCustoHospede();
-                            }
-                        }
-
-                        if (hospedeIsCachorro) {
-                            Clientes.clientes.get(Clientes.indiceCliente).getCustoCachorrosGatos()[0] = somaCustos;
-                            Arquivos.salvar(hospedes, 0);
-                        } else {
-                            Clientes.clientes.get(Clientes.indiceCliente).getCustoCachorrosGatos()[1] = somaCustos;
-                            Arquivos.salvar(hospedes, 1);
-                        }
-                        
-                        ((JLabel) EditarCliente.paineisEditarCliente.get(0).getComponent(8)).setText("Débito: " + (Clientes.clientes.get(Clientes.indiceCliente).getCustoCachorrosGatos()[0] + Clientes.clientes.get(Clientes.indiceCliente).getCustoCachorrosGatos()[1]));
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                    Home.telaEditarCliente.setLocation(Home.posicaoTela);
-                    Home.telaEditarCliente.setSize(Home.telaWidth, Home.telaHeight);
-                    Home.telaEditarCliente.setVisible(true);
-                    dispose();
-                } else {
-                    Home.telaPrincipal.setLocation(Home.posicaoTela);
-                    Home.telaPrincipal.setSize(Home.telaWidth, Home.telaHeight);
-                    Home.telaPrincipal.setVisible(true);
-                    dispose();
-                }
-            }
-        });
+        voltar.addActionListener(new EventoBotaoVoltar());
 
         add(new JScrollPane(paineisHospedes.get(0)), BorderLayout.CENTER); 
         add(paineisHospedes.get(1), BorderLayout.WEST); 
